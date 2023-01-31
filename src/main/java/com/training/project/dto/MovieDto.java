@@ -4,7 +4,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-public class Movie {
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+public class MovieDto {
 	
 	private Integer movieId;
 	private MovieGenre movieGenre;
@@ -13,9 +15,9 @@ public class Movie {
 	private String certificate;
 	private LocalDate releaseDate;
 	private String description;
-	
-	private List<Reviews> reviews;
-	private List<Cast> cast;
+	@JsonManagedReference(value="movie-review")
+	private List<ReviewsDto> reviews;
+	private List<CastDto> cast;
 	
 	//setters and getters
 	
@@ -62,22 +64,22 @@ public class Movie {
 		this.description = description;
 	}
 	
-	public List<Reviews> getReviews() {
+	public List<ReviewsDto> getReviews() {
 		return reviews;
 	}
-	public void setReviews(List<Reviews> reviews) {
+	public void setReviews(List<ReviewsDto> reviews) {
 		this.reviews = reviews;
 	}
-	public List<Cast> getCast() {
+	public List<CastDto> getCast() {
 		return cast;
 	}
-	public void setCast(List<Cast> cast) {
+	public void setCast(List<CastDto> cast) {
 		this.cast = cast;
 	}
 	
 	
 	// constructor
-	public Movie(Integer movieId, MovieGenre movieGenre, String movieName, LocalTime duration, String certificate,
+	public MovieDto( Integer movieId,MovieGenre movieGenre, String movieName, LocalTime duration, String certificate,
 			LocalDate releaseDate, String description) {
 		super();
 		this.movieId = movieId;
@@ -88,11 +90,18 @@ public class Movie {
 		this.releaseDate = releaseDate;
 		this.description = description;
 	}
-	public Movie() {
+	public MovieDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	@Override
+	public String toString() {
+		return "MovieDto [movieId=" + movieId + ", movieGenre=" + movieGenre + ", movieName=" + movieName
+				+ ", duration=" + duration + ", certificate=" + certificate + ", releaseDate=" + releaseDate
+				+ ", description=" + description + ", reviews=" + reviews + ", cast=" + cast + "]";
+	}
 
+	
 	
 	
 	

@@ -1,9 +1,25 @@
-package com.training.project.dto;
+package com.training.project.repositories.entities;
 
-public class Cast {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="cast_details")
+public class CastEntity {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id")
 	private Integer castId;
+	
+	@Column(name="cast_name")
 	private String castName;
+	
+	@Column(name="profession")
 	private String profession;
 	
 	// getters and setters
@@ -28,13 +44,12 @@ public class Cast {
 	}
 	//constructor
 	
-	public Cast(Integer castId, String castName, String profession) {
+	public CastEntity(String castName, String profession) {
 		super();
-		this.castId = castId;
 		this.castName = castName;
 		this.profession = profession;
 	}
-	public Cast() {
+	public CastEntity() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

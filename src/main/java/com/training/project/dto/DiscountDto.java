@@ -1,9 +1,9 @@
 package com.training.project.dto;
 
-public class Discount {
+public class DiscountDto {
 	private Integer discountId;
-	private String bankName;
-	private Integer discountPercentage;
+	private Bank bankName;
+	private Float discountPercentage;
 	
 	//getters and setters
 	public Integer getDiscountId() {
@@ -12,27 +12,26 @@ public class Discount {
 	public void setDiscountId(Integer discountId) {
 		this.discountId = discountId;
 	}
-	public String getBankName() {
+	public Bank getBankName() {
 		return bankName;
 	}
-	public void setBankName(String bankName) {
+	public void setBankName(Bank bankName) {
 		this.bankName = bankName;
 	}
-	public Integer getDiscountPercentage() {
+	public Float getDiscountPercentage() {
 		return discountPercentage;
 	}
-	public void setDiscountPercentage(Integer discountPercentage) {
+	public void setDiscountPercentage(Float discountPercentage) {
 		this.discountPercentage = discountPercentage;
 	}
 	
 	//constructors
-	public Discount(Integer discountId, String bankName, Integer discountPercentage) {
+	public DiscountDto(Bank bankName, Float discountPercentage) {
 		super();
-		this.discountId = discountId;
 		this.bankName = bankName;
 		this.discountPercentage = discountPercentage;
 	}
-	public Discount() {
+	public DiscountDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

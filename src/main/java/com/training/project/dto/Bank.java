@@ -5,8 +5,5 @@ public enum Bank {
 	Axis,
 	HDFC,
 	SBI,
-	Central,
-	VijayMalyaLocalBank,
-	NiravModiLoyalBank
-	
+	Central
 }
