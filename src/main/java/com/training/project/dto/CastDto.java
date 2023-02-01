@@ -1,6 +1,6 @@
 package com.training.project.dto;
 
-public class Cast {
+public class CastDto {
 	
 	private Integer castId;
 	private String castName;
@@ -28,13 +28,12 @@ public class Cast {
 	}
 	//constructor
 	
-	public Cast(Integer castId, String castName, String profession) {
-		super();
-		this.castId = castId;
+	public CastDto( String castName, String profession) {
+	
 		this.castName = castName;
 		this.profession = profession;
 	}
-	public Cast() {
+	public CastDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

@@ -4,18 +4,26 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
-public class Booking {
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+
+public class BookingDto {
 	private Integer bookingId;
-	private Movie movie;
-	private Users user;
+	
+	private MovieDto movie;
+	
+	@Enumerated(EnumType.STRING)
 	private MovieLanguage language;
+	
 	private String movieFormat;
 	private LocalDate bookingDate;
 	private LocalTime bookingTime;
-	private List<String> seats;
 	
-
+	@JsonManagedReference(value="booking_seats")
+	private List<SeatsDto> seats;
 	//setters and getters
 	
 	
@@ -25,17 +33,11 @@ public class Booking {
 	public void setBookingId(Integer bookingId) {
 		this.bookingId = bookingId;
 	}
-	public Movie getMovie() {
+	public MovieDto getMovie() {
 		return movie;
 	}
-	public void setMovie(Movie movie) {
+	public void setMovie(MovieDto movie) {
 		this.movie = movie;
-	}
-	public Users getUser() {
-		return user;
-	}
-	public void setUser(Users user) {
-		this.user = user;
 	}
 	public MovieLanguage getLanguage() {
 		return language;
@@ -61,29 +63,29 @@ public class Booking {
 	public void setBookingTime(LocalTime bookingTime) {
 		this.bookingTime = bookingTime;
 	}
-	public List<String> getSeats() {
+	public List<SeatsDto> getSeats() {
 		return seats;
 	}
-	public void setSeats(List<String> seats) {
+	public void setSeats(List<SeatsDto> seats) {
 		this.seats = seats;
 	}
-	//constructors
-	public Booking(Integer bookingId, Movie movie, Users user, MovieLanguage language, String movieFormat,
-			LocalDate bookingDate, LocalTime bookingTime, List<String> seats) {
+	public BookingDto(Integer bookingId, MovieDto movie, MovieLanguage language, String movieFormat,
+			LocalDate bookingDate, LocalTime bookingTime, List<SeatsDto> seats) {
 		super();
 		this.bookingId = bookingId;
 		this.movie = movie;
-		this.user = user;
 		this.language = language;
 		this.movieFormat = movieFormat;
 		this.bookingDate = bookingDate;
 		this.bookingTime = bookingTime;
 		this.seats = seats;
 	}
-	public Booking() {
-		super();
-		// TODO Auto-generated constructor stub
+	
+	
+	
+	
 	}
 	
 	
-}
+	
+

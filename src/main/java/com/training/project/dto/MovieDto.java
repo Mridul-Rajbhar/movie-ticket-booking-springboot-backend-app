@@ -4,18 +4,32 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-public class Movie {
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
+public class MovieDto {
 	
 	private Integer movieId;
+	
+	@Enumerated(EnumType.STRING)
 	private MovieGenre movieGenre;
+	 
 	private String movieName;
 	private LocalTime duration;
 	private String certificate;
 	private LocalDate releaseDate;
 	private String description;
+	private String imageURL;
 	
-	private List<Reviews> reviews;
-	private List<Cast> cast;
+	public String getImageURL() {
+		return imageURL;
+	}
+	public void setImageURL(String imageURL) {
+		this.imageURL = imageURL;
+	}
+	private List<ReviewsDto> reviews;
+	
+	private List<CastDto> cast;
 	
 	//setters and getters
 	
@@ -62,23 +76,23 @@ public class Movie {
 		this.description = description;
 	}
 	
-	public List<Reviews> getReviews() {
+	public List<ReviewsDto> getReviews() {
 		return reviews;
 	}
-	public void setReviews(List<Reviews> reviews) {
+	public void setReviews(List<ReviewsDto> reviews) {
 		this.reviews = reviews;
 	}
-	public List<Cast> getCast() {
+	public List<CastDto> getCast() {
 		return cast;
 	}
-	public void setCast(List<Cast> cast) {
+	public void setCast(List<CastDto> cast) {
 		this.cast = cast;
 	}
 	
 	
 	// constructor
-	public Movie(Integer movieId, MovieGenre movieGenre, String movieName, LocalTime duration, String certificate,
-			LocalDate releaseDate, String description) {
+	public MovieDto(Integer movieId, MovieGenre movieGenre, String movieName, LocalTime duration, String certificate,
+			LocalDate releaseDate, String description, String imageURL) {
 		super();
 		this.movieId = movieId;
 		this.movieGenre = movieGenre;
@@ -87,8 +101,9 @@ public class Movie {
 		this.certificate = certificate;
 		this.releaseDate = releaseDate;
 		this.description = description;
+		this.imageURL = imageURL;
 	}
-	public Movie() {
+	public MovieDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
