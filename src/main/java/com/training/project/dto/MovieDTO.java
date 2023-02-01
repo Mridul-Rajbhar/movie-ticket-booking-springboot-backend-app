@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-public class Movie {
+public class MovieDTO {
 	
 	private Integer movieId;
 	private MovieGenre movieGenre;
@@ -14,13 +14,21 @@ public class Movie {
 	private LocalDate releaseDate;
 	private String description;
 	
-	private List<Reviews> reviews;
-	private List<Cast> cast;
+	private List<ReviewsDTO> reviews;
+	private List<CastDTO> cast;
+	
+	private String imageURL; 
 	
 	//setters and getters
 	
 	public Integer getMovieId() {
 		return movieId;
+	}
+	public String getImageURL() {
+		return imageURL;
+	}
+	public void setImageURL(String imageURL) {
+		this.imageURL = imageURL;
 	}
 	public void setMovieId(Integer movieId) {
 		this.movieId = movieId;
@@ -62,35 +70,36 @@ public class Movie {
 		this.description = description;
 	}
 	
-	public List<Reviews> getReviews() {
+	public List<ReviewsDTO> getReviews() {
 		return reviews;
 	}
-	public void setReviews(List<Reviews> reviews) {
+	public void setReviews(List<ReviewsDTO> reviews) {
 		this.reviews = reviews;
 	}
-	public List<Cast> getCast() {
+	public List<CastDTO> getCast() {
 		return cast;
 	}
-	public void setCast(List<Cast> cast) {
+	public void setCast(List<CastDTO> cast) {
 		this.cast = cast;
 	}
 	
 	
 	// constructor
-	public Movie(Integer movieId, MovieGenre movieGenre, String movieName, LocalTime duration, String certificate,
-			LocalDate releaseDate, String description) {
+	public MovieDTO( MovieGenre movieGenre, String movieName, LocalTime duration, String certificate,
+			LocalDate releaseDate, String description, List<CastDTO> cast, String imageURL) {
 		super();
-		this.movieId = movieId;
+		
 		this.movieGenre = movieGenre;
 		this.movieName = movieName;
 		this.duration = duration;
 		this.certificate = certificate;
 		this.releaseDate = releaseDate;
 		this.description = description;
+		this.cast = cast;
+		this.imageURL = imageURL;
 	}
-	public Movie() {
-		super();
-		// TODO Auto-generated constructor stub
+	public MovieDTO() {
+		
 	}
 
 	

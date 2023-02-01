@@ -1,12 +1,13 @@
 package com.training.project.dto;
 
-public class Order {
+public class OrderDTO {
 	private Integer orderId;
-	private Booking booking;
-	private Discount discount;
+	private BookingDTO booking;
+	private DiscountDTO discount;
 	private CardType cardType;
 	private Bank bank;
 	private Integer amount;
+	private UsersDTO user;
 	
 	//setters and getters 
 	
@@ -16,16 +17,16 @@ public class Order {
 	public void setOrderId(Integer orderId) {
 		this.orderId = orderId;
 	}
-	public Booking getBooking() {
+	public BookingDTO getBooking() {
 		return booking;
 	}
-	public void setBooking(Booking booking) {
+	public void setBooking(BookingDTO booking) {
 		this.booking = booking;
 	}
-	public Discount getDiscount() {
+	public DiscountDTO getDiscount() {
 		return discount;
 	}
-	public void setDiscount(Discount discount) {
+	public void setDiscount(DiscountDTO discount) {
 		this.discount = discount;
 	}
 	public CardType getCardType() {
@@ -47,9 +48,17 @@ public class Order {
 		this.amount = amount;
 	}
 	
+	public UsersDTO getUser() {
+		return user;
+	}
+	public void setUser(UsersDTO user) {
+		this.user = user;
+	}
+	
 	//constructors 
 	
-	public Order(Integer orderId, Booking booking, Discount discount, CardType cardType, Bank bank, Integer amount) {
+	
+	public OrderDTO(Integer orderId, BookingDTO booking, DiscountDTO discount, CardType cardType, Bank bank, Integer amount, UsersDTO user) {
 		super();
 		this.orderId = orderId;
 		this.booking = booking;
@@ -57,8 +66,9 @@ public class Order {
 		this.cardType = cardType;
 		this.bank = bank;
 		this.amount = amount;
+		this.user = user;
 	}
-	public Order() {
+	public OrderDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

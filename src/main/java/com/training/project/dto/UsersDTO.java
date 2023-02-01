@@ -2,10 +2,10 @@ package com.training.project.dto;
 
 import java.time.LocalDate;
 
-public class Users {
+public class UsersDTO {
 	
 	private Integer userId;
-	private ContactAddress contactAddress;
+	private ContactAddressDTO contactAddress;
 	private String firstName;
 	private String lastName;
 	private String gender;
@@ -20,10 +20,10 @@ public class Users {
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
-	public ContactAddress getContactAddress() {
+	public ContactAddressDTO getContactAddress() {
 		return contactAddress;
 	}
-	public void setContactAddress(ContactAddress contactAddress) {
+	public void setContactAddress(ContactAddressDTO contactAddress) {
 		this.contactAddress = contactAddress;
 	}
 	public String getFirstName() {
@@ -59,7 +59,7 @@ public class Users {
 
 	//constructors
 	
-	public Users(Integer userId, ContactAddress contactAddress, String firstName, String lastName, String gender,
+	public UsersDTO(Integer userId, ContactAddressDTO contactAddress, String firstName, String lastName, String gender,
 			LocalDate dateOfBirth, String password) {
 		super();
 		this.userId = userId;
@@ -71,9 +71,8 @@ public class Users {
 		this.password = password;
 	}
 
-	public Users() {
-		super();
-		// TODO Auto-generated constructor stub
+	public UsersDTO() {
+		
 	}
 	
 	

@@ -5,10 +5,9 @@ import java.time.LocalTime;
 import java.util.List;
 
 
-public class Booking {
+public class BookingDTO {
 	private Integer bookingId;
-	private Movie movie;
-	private Users user;
+	private MovieDTO movie;
 	private MovieLanguage language;
 	private String movieFormat;
 	private LocalDate bookingDate;
@@ -25,18 +24,13 @@ public class Booking {
 	public void setBookingId(Integer bookingId) {
 		this.bookingId = bookingId;
 	}
-	public Movie getMovie() {
+	public MovieDTO getMovie() {
 		return movie;
 	}
-	public void setMovie(Movie movie) {
+	public void setMovie(MovieDTO movie) {
 		this.movie = movie;
 	}
-	public Users getUser() {
-		return user;
-	}
-	public void setUser(Users user) {
-		this.user = user;
-	}
+	
 	public MovieLanguage getLanguage() {
 		return language;
 	}
@@ -68,19 +62,18 @@ public class Booking {
 		this.seats = seats;
 	}
 	//constructors
-	public Booking(Integer bookingId, Movie movie, Users user, MovieLanguage language, String movieFormat,
+	public BookingDTO(Integer bookingId, MovieDTO movie, MovieLanguage language, String movieFormat,
 			LocalDate bookingDate, LocalTime bookingTime, List<String> seats) {
 		super();
 		this.bookingId = bookingId;
 		this.movie = movie;
-		this.user = user;
 		this.language = language;
 		this.movieFormat = movieFormat;
 		this.bookingDate = bookingDate;
 		this.bookingTime = bookingTime;
 		this.seats = seats;
 	}
-	public Booking() {
+	public BookingDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
