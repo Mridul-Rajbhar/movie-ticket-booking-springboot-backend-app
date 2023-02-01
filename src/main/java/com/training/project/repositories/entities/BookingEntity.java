@@ -15,13 +15,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.training.project.dto.MovieLanguage;
-import com.training.project.dto.Seat;
+import com.training.project.dto.SeatsDto;
 import com.vladmihalcea.hibernate.type.array.StringArrayType;
 
 @Entity
@@ -50,14 +52,20 @@ public class BookingEntity {
 	@Column(name="booking_time")
 	private LocalTime bookingTime;
 	
-//	@Type(type = "string-array")
-//	@Column(name="seats_booked", columnDefinition = "text[]")
-//	private List<String> seats;
+	@JsonManagedReference(value="booking_seats")
+	@OneToMany(mappedBy = "booking")
+	private List<SeatsEntity> seats;
 	
 
 	//setters and getters
 	
 	
+	public List<SeatsEntity> getSeats() {
+		return seats;
+	}
+	public void setSeats(List<SeatsEntity> seats) {
+		this.seats = seats;
+	}
 	public Integer getBookingId() {
 		return bookingId;
 	}
@@ -96,22 +104,15 @@ public class BookingEntity {
 		this.bookingTime = bookingTime;
 	}
 	
-//	public List<String> getSeats() {
-//		return seats;
-//	}
-//	public void setSeats(List<String> seats) {
-//		this.seats = seats;
-//	}
 	//constructors
 	public BookingEntity(MovieEntity movie, MovieLanguage language, String movieFormat,
-			LocalDate bookingDate, LocalTime bookingTime, List<String> seats) {
+			LocalDate bookingDate, LocalTime bookingTime) {
 		super();
 		this.movie = movie;
 		this.language = language;
 		this.movieFormat = movieFormat;
 		this.bookingDate = bookingDate;
 		this.bookingTime = bookingTime;
-		//this.seats = seats;
 	}
 	public BookingEntity() {
 		super();
@@ -121,7 +122,7 @@ public class BookingEntity {
 	public String toString() {
 		return "BookingEntity [bookingId=" + bookingId + ", movie=" + movie + ", language=" + language
 				+ ", movieFormat=" + movieFormat + ", bookingDate=" + bookingDate + ", bookingTime=" + bookingTime
-				+ ", seats=" + "]";
+				+ ", seats=" + seats + "]";
 	}
 	
 	

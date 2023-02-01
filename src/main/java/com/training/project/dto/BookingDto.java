@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 public class BookingDto {
 	private Integer bookingId;
@@ -12,12 +14,20 @@ public class BookingDto {
 	private String movieFormat;
 	private LocalDate bookingDate;
 	private LocalTime bookingTime;
-//	private List<String> seats;
+	
+	@JsonManagedReference(value="booking_seats")
+	private List<SeatsDto> seats;
 	
 
 	//setters and getters
 	
 	
+	public List<SeatsDto> getSeats() {
+		return seats;
+	}
+	public void setSeats(List<SeatsDto> seats) {
+		this.seats = seats;
+	}
 	public Integer getBookingId() {
 		return bookingId;
 	}
@@ -55,12 +65,8 @@ public class BookingDto {
 	public void setBookingTime(LocalTime bookingTime) {
 		this.bookingTime = bookingTime;
 	}
-//	public List<String> getSeats() {
-//		return seats;
-//	}
-//	public void setSeats(List<String> seats) {
-//		this.seats = seats;
-//	}
+	
+
 	//constructors
 	public BookingDto(MovieDto movie, MovieLanguage language, String movieFormat,
 			LocalDate bookingDate, LocalTime bookingTime) {
@@ -70,8 +76,8 @@ public class BookingDto {
 		this.movieFormat = movieFormat;
 		this.bookingDate = bookingDate;
 		this.bookingTime = bookingTime;
-		//this.seats = seats;
 	}
+
 	public BookingDto() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -79,8 +85,14 @@ public class BookingDto {
 	@Override
 	public String toString() {
 		return "BookingDto [bookingId=" + bookingId + ", movie=" + movie + ", language=" + language + ", movieFormat="
-				+ movieFormat + ", bookingDate=" + bookingDate + ", bookingTime=" + bookingTime + "]";
+				+ movieFormat + ", bookingDate=" + bookingDate + ", bookingTime=" + bookingTime + ", seats=" + this.seats
+				+ "]";
 	}
+	
+	
+	
+	
+	
 	
 	
 }

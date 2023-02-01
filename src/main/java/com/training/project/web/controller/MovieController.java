@@ -37,13 +37,13 @@ public class MovieController {
 		return new ResponseEntity<MovieDto>(returnedMovieDto, HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/movies/{id}")
+	@GetMapping("/movies/number/{id}")
 	public ResponseEntity<MovieDto> getMovie(@PathVariable Integer id){
 		MovieDto returnedMovieDto = movieService.findMovieById(id);
 		return new ResponseEntity<MovieDto>(returnedMovieDto, HttpStatus.OK);
 	}
 	
-	@GetMapping("/movies/{movieName}")
+	@GetMapping("/movies/name/{movieName}")
 	public ResponseEntity<MovieDto> getMovieByName(@PathVariable String movieName){
 		return new ResponseEntity<MovieDto>(movieService.findMovieByName(movieName), HttpStatus.OK);
 	}

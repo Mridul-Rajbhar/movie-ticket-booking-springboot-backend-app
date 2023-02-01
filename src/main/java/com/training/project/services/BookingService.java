@@ -1,5 +1,6 @@
 package com.training.project.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,8 +16,10 @@ import com.training.project.dto.BookingDto;
 import com.training.project.dto.MovieDto;
 import com.training.project.repositories.BookingRepository;
 import com.training.project.repositories.MovieRepository;
+import com.training.project.repositories.SeatsRepository;
 import com.training.project.repositories.entities.BookingEntity;
 import com.training.project.repositories.entities.MovieEntity;
+import com.training.project.repositories.entities.SeatsEntity;
 
 @Service
 public class BookingService {
@@ -25,6 +28,9 @@ public class BookingService {
 	
 	@Autowired
 	private MovieRepository movieRepository;
+	
+	@Autowired
+	private SeatsRepository seatsRepository;
 	
 	private ModelMapper mapper;
 	private static Logger logger = LoggerFactory.getLogger(BookingEntity.class);
@@ -37,12 +43,21 @@ public class BookingService {
 	//create booking
 	public BookingDto saveBooking(BookingDto bookingDto, String movieName) {
 		
+		//get movie by name
 		MovieEntity movieToBook = this.movieRepository.getByMovieName(movieName);
 		
-		System.out.println(bookingDto);
+		//convert booking dto to movie dto
 		BookingEntity bookingEntity = mapper.map(bookingDto, BookingEntity.class);
-		System.out.println(bookingEntity);
+		System.out.println("Booking entity: \n" + bookingEntity);
 		bookingEntity.setMovie(movieToBook);
+		
+		List<SeatsEntity> seatToBooked = bookingEntity.getSeats();
+		List<SeatsEntity> returnSeatWithId = new ArrayList<>(); 
+		
+		for(SeatsEntity seatsEntity: seatToBooked) {
+			returnSeatWithId.add(this.seatsRepository.save(seatsEntity));
+		}
+		bookingEntity.setSeats(returnSeatWithId);
 		BookingEntity returnedbookingEntity = bookingRepository.save(bookingEntity);
 		BookingDto returnedBookingDto = mapper.map(returnedbookingEntity, BookingDto.class);
 		
@@ -71,7 +86,7 @@ public class BookingService {
 			logger.info("found all bookings called");
 			Iterable<BookingEntity> bookings = this.bookingRepository.findAll();
 			
-			List<BookingDto> bookingDtoList = null;
+			List<BookingDto> bookingDtoList = new ArrayList<>();
 			for(BookingEntity bookingEntity: bookings) {
 				BookingDto bookingDto = mapper.map(bookingEntity, BookingDto.class);
 				bookingDtoList.add(bookingDto);

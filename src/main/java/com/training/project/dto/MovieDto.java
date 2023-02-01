@@ -15,6 +15,7 @@ public class MovieDto {
 	private String certificate;
 	private LocalDate releaseDate;
 	private String description;
+	private String imageURL;
 	@JsonManagedReference(value="movie-review")
 	private List<ReviewsDto> reviews;
 	private List<CastDto> cast;
@@ -76,11 +77,16 @@ public class MovieDto {
 	public void setCast(List<CastDto> cast) {
 		this.cast = cast;
 	}
-	
+	public String getImageURL() {
+		return imageURL;
+	}
+	public void setImageURL(String imageURL) {
+		this.imageURL = imageURL;
+	}
 	
 	// constructor
 	public MovieDto( Integer movieId,MovieGenre movieGenre, String movieName, LocalTime duration, String certificate,
-			LocalDate releaseDate, String description) {
+			LocalDate releaseDate, String description, String imageURL) {
 		super();
 		this.movieId = movieId;
 		this.movieGenre = movieGenre;
@@ -89,6 +95,7 @@ public class MovieDto {
 		this.certificate = certificate;
 		this.releaseDate = releaseDate;
 		this.description = description;
+		this.imageURL = imageURL;
 	}
 	public MovieDto() {
 		super();

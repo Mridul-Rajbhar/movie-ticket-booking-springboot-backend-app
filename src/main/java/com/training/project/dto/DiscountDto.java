@@ -35,6 +35,11 @@ public class DiscountDto {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	@Override
+	public String toString() {
+		return "DiscountDto [discountId=" + discountId + ", bankName=" + bankName + ", discountPercentage="
+				+ discountPercentage + "]";
+	}
 	
 	 
 	

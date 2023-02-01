@@ -54,6 +54,9 @@ public class MovieEntity {
 	@Column(name="description")
 	private String description;
 	
+	@Column(name="image_url")
+	private String imageURL;
+	
 	@OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonManagedReference(value="movie-review")
 	private List<ReviewsEntity> reviews;
@@ -76,6 +79,13 @@ public class MovieEntity {
 	}
 	public MovieGenre getMovieGenre() {
 		return movieGenre;
+	}
+	
+	public String getImageURL() {
+		return imageURL;
+	}
+	public void setImageURL(String imageURL) {
+		this.imageURL = imageURL;
 	}
 	public void setMovieGenre(MovieGenre movieGenre) {
 		this.movieGenre = movieGenre;
@@ -128,7 +138,7 @@ public class MovieEntity {
 	
 	// constructor
 	public MovieEntity( Integer movieId, MovieGenre movieGenre, String movieName, LocalTime duration, String certificate,
-			LocalDate releaseDate, String description) {
+			LocalDate releaseDate, String description, String imageURL) {
 		super();
 		this.movieId = movieId;
 		this.movieGenre = movieGenre;
@@ -137,6 +147,7 @@ public class MovieEntity {
 		this.certificate = certificate;
 		this.releaseDate = releaseDate;
 		this.description = description;
+		this.imageURL = imageURL;
 	}
 	public MovieEntity() {
 		super();
@@ -149,7 +160,7 @@ public class MovieEntity {
 				+ ", description=" + description + ", reviews="  + ", cast=" + cast+ "]";
 	}
 	
-	public void add(ReviewsEntity reviewsEntity) {
+	public void addReview(ReviewsEntity reviewsEntity) {
 		if(reviewsEntity != null) {
 			if(reviews != null) {
 				reviews = new ArrayList<>();

@@ -1,5 +1,7 @@
 package com.training.project.services;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
@@ -26,6 +28,18 @@ public class DiscountService {
 		mapper = new ModelMapper();
 	}
 	
+	//get all discount objects
+	public List<DiscountDto> getAll(){
+		Iterable<DiscountEntity> discountEntitys = this.discountRepository.findAll();
+		List<DiscountDto> discountDtos = new ArrayList<DiscountDto>();
+		for(DiscountEntity discountEntity: discountEntitys) {
+			DiscountDto discountDto = mapper.map(discountEntity, DiscountDto.class);
+			discountDtos.add(discountDto);
+		}
+		return discountDtos;
+	}
+	
+	
 	//create discount object
 	public DiscountDto saveDiscount(DiscountDto discountDto) {
 		DiscountEntity discountEntity = mapper.map(discountDto, DiscountEntity.class);
@@ -49,9 +63,9 @@ public class DiscountService {
 
 	
 	//update Discount 
-	public DiscountDto findDiscountByBankName(Bank bankName, float discount) {
-		DiscountEntity discountEntity = this.discountRepository.getByBankName(bankName);
-		discountEntity.setDiscountPercentage(discount);
+	public DiscountDto updateDiscountByBankName(DiscountDto discountDto) {
+		DiscountEntity discountEntity = this.discountRepository.getByBankName(discountDto.getBankName());
+		discountEntity.setDiscountPercentage(discountDto.getDiscountPercentage());
 		DiscountEntity returnedDiscountEntity = this.discountRepository.save(discountEntity);
 		DiscountDto returnedDiscountDto = mapper.map(returnedDiscountEntity, DiscountDto.class);
 		
