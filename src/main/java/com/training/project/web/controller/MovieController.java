@@ -1,6 +1,8 @@
 package com.training.project.web.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,10 +54,50 @@ public class MovieController {
 	}
 	
 	@CrossOrigin(origins="http://localhost:4200/")
-	@DeleteMapping(value="/movie/{movieName}")
-	public String deleteMovieByName(@PathVariable("movieName")String movieName) {
-		return movieServices.deleteMovie(movieName)+ "Movie deleted";
-		
-	}
+	@DeleteMapping(value="/movies/{movieName}")
+	public Map<String,Boolean> deleteMovieByName(@PathVariable("movieName")String movieName) 
+	{
+		logger.info("DELETE : http://localhost:8080/api/v1/movies/{movieName} ");
+		HashMap<String, Boolean> map = new HashMap<String, Boolean>();
+	        MovieDto movieDto = this.movieServices.findMovieByName(movieName);
+	        if (movieDto != null) {
+	            this.movieServices.deleteMovie(movieName);
+	            map.put("deleted", Boolean.TRUE);
+	        } else {
+	           logger.info("not found");
+	        }
+	        return map;
+	    }
 	
+	
+	@CrossOrigin(origins="http://localhost:4200/")
+	@GetMapping(value="/movies/{movieName}")
+	public ResponseEntity<MovieDto> getMovieByName(@PathVariable("movieName")String movieName) {
+	logger.info("get : http://localhost:8080/api/v1/movies/{movieName} ");
+	
+	this.movieServices.findMovieByName(movieName);
+	MovieDto movieDto= this.movieServices.findMovieByName(movieName);
+	
+	if(movieDto == null) {
+		logger.info("not found");
+	}
+	return ResponseEntity.ok(movieDto);
+	
+//	 List<MovieDto> listMovieDto =  this.movieServices.findMovieByName(movieName);
+//
+//     return ResponseEntity.ok(listMovieDto);
+    }
+
 }
+
+
+
+
+
+
+//@CrossOrigin(origins="http://localhost:4200/")
+//@DeleteMapping(value="/movies/{movieName}")
+//public String deleteMovieByName(@PathVariable("movieName")String movieName) {
+//	return movieServices.deleteMovie(movieName)+ "Movie deleted";
+//	
+//}

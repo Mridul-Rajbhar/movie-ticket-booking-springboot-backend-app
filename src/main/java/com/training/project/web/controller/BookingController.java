@@ -17,7 +17,7 @@ import com.training.project.services.BookingServices;
 import com.training.project.services.MovieServices;
 
 @RestController
-@RequestMapping("/api/b7")
+@RequestMapping("/api/v1")
 public class BookingController {
 
 	private BookingServices bookingServices;
