@@ -19,7 +19,7 @@ public class CastEntity {
 	@Column(name = "cast_name")
 	private String castName;
 	
-	@Column(name = "profession")
+	@Column(name = "Profession")
 	private String profession;
 	
 	// getters and setters
