@@ -4,12 +4,17 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 public class BookingDto {
 	private Integer bookingId;
 	private MovieDto movie;
+	
+	@Enumerated(EnumType.STRING)
 	private MovieLanguage language;
 	private String movieFormat;
 	private LocalDate bookingDate;

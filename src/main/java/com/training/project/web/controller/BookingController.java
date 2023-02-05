@@ -30,16 +30,16 @@ public class BookingController {
 		logger.info("Booking Controller constructor created");
 	}
 	
-	@CrossOrigin(origins="http://localhost:4200")
-	@PostMapping("booking/{movieName}")
-	public ResponseEntity<BookingDto> addBooking(@RequestBody BookingDto bookingDto, @PathVariable String movieName){
-		BookingDto returnedBookingDto = bookingService.saveBooking(bookingDto, movieName);
-		return new ResponseEntity<BookingDto>(returnedBookingDto, HttpStatus.CREATED);
-	}
+//	@CrossOrigin(origins="http://localhost:4200")
+//	@PostMapping("booking/{movieName}")
+//	public ResponseEntity<BookingDto> addBooking(@RequestBody BookingDto bookingDto, @PathVariable String movieName){
+//		BookingDto returnedBookingDto = bookingService.saveBooking(bookingDto, movieName);
+//		return new ResponseEntity<BookingDto>(returnedBookingDto, HttpStatus.CREATED);
+//	}
 	
 	@CrossOrigin(origins="http://localhost:4200")
 	@GetMapping("/booking/{id}")
-	public ResponseEntity<BookingDto> getBooking(@PathVariable Integer id){
+	public ResponseEntity<BookingDto> getBookingById(@PathVariable Integer id){
 		BookingDto returnedBookingDto = bookingService.findBookingById(id);
 		return new ResponseEntity<BookingDto>(returnedBookingDto, HttpStatus.OK);
 	}

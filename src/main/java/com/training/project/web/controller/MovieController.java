@@ -1,6 +1,8 @@
 package com.training.project.web.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,11 +52,14 @@ public class MovieController {
 		return new ResponseEntity<List<MovieDto>>(allMovies, HttpStatus.OK);
 	}
 	
-	@CrossOrigin(origins="http://localhost:4200")
-	@PostMapping(value="/movies")
-	public ResponseEntity<MovieDto> addMovie(@RequestBody MovieDto movieDto){
-		MovieDto returnedMovieDto = movieService.saveMovie(movieDto);
-		return new ResponseEntity<MovieDto>(returnedMovieDto, HttpStatus.CREATED);
+	@CrossOrigin(origins="http://localhost:4200/")
+	@PostMapping(value = "/movies", consumes = "application/json", produces = "application/json")
+	 public ResponseEntity<MovieDto> createMovie(@RequestBody MovieDto movie)
+	{
+	 // complete the code and return ResponseEnity object with status code 201
+		 logger.info("POST : http://localhost:8080/api/v1/movies");
+	    MovieDto returnedMovieDto =this.movieService.saveMovie(movie);
+	    return new ResponseEntity<MovieDto>(returnedMovieDto, HttpStatus.CREATED);
 	}
 	
 	@CrossOrigin(origins="http://localhost:4200")
@@ -65,7 +71,31 @@ public class MovieController {
 	
 	@CrossOrigin(origins="http://localhost:4200")
 	@GetMapping("/movies/name/{movieName}")
-	public ResponseEntity<MovieDto> getMovieByName(@PathVariable String movieName){
-		return new ResponseEntity<MovieDto>(movieService.findMovieByName(movieName), HttpStatus.OK);
-	}
+	public ResponseEntity<MovieDto> getMovieByName(@PathVariable("movieName")String movieName) {
+		logger.info("get : http://localhost:8080/api/v1/movies/name/{movieName} ");
+		this.movieService.findMovieByName(movieName);
+		MovieDto movieDto= this.movieService.findMovieByName(movieName);
+		if(movieDto == null) {
+			logger.info("not found");
+		}
+		return ResponseEntity.ok(movieDto);
+		
+	    }
+	
+	@CrossOrigin(origins="http://localhost:4200/")
+	@DeleteMapping(value="/movies/{movieName}")
+	public Map<String,Boolean> deleteMovieByName(@PathVariable("movieName")String movieName) 
+	{
+		logger.info("DELETE : http://localhost:8080/api/v1/movies/{movieName} ");
+		HashMap<String, Boolean> map = new HashMap<String, Boolean>();
+	        MovieDto movieDto = this.movieService.findMovieByName(movieName);
+	        if (movieDto != null) {
+	            this.movieService.deleteMovie(movieName);
+	            map.put("deleted", Boolean.TRUE);
+	        } else {
+	           logger.info("not found");
+	        }
+	        return map;
+	    }
+	
 }
