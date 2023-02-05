@@ -14,11 +14,11 @@ import com.training.project.repositories.entities.CastEntity;
 import com.training.project.repositories.entities.MovieEntity;
 
 @Service
-public class CastServices {
+public class CastService {
 	private CastRepository castRepository;
 	
 	@Autowired
-	public CastServices(CastRepository castRepository) {
+	public CastService(CastRepository castRepository) {
 	this.castRepository=castRepository;
 	}
 	

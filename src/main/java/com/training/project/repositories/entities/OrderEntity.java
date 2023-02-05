@@ -96,10 +96,10 @@ public class OrderEntity {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public OrderEntity(Integer orderId, BookingEntity booking, DiscountEntity discount, CardType cardType, Bank bank,
+	public OrderEntity(BookingEntity booking, DiscountEntity discount, CardType cardType, Bank bank,
 			Integer amount, UsersEntity user) {
 		super();
-		this.orderId = orderId;
+		
 		this.booking = booking;
 		this.discount = discount;
 		this.cardType = cardType;

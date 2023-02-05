@@ -50,9 +50,9 @@ public class DiscountEntity {
 	}
 	
 	//constructors
-	public DiscountEntity(Integer discountId, Bank bankName, Integer discountPercentage) {
+	public DiscountEntity( Bank bankName, Integer discountPercentage) {
 		super();
-		this.discountId = discountId;
+		
 		this.bankName = bankName;
 		this.discountPercentage = discountPercentage;
 	}

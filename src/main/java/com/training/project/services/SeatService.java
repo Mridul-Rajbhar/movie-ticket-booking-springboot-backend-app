@@ -17,11 +17,11 @@ import com.training.project.repositories.entities.MovieEntity;
 import com.training.project.repositories.entities.SeatsEntity;
 
 @Service
-public class SeatServices {
+public class SeatService {
  
 	private SeatsRepository seatsRepository;
 	@Autowired
-	public SeatServices(SeatsRepository seatsRepository) {
+	public SeatService(SeatsRepository seatsRepository) {
 		this.seatsRepository=seatsRepository;
 	}
 	

@@ -14,12 +14,12 @@ import com.training.project.repositories.MovieRepository;
 import com.training.project.repositories.entities.MovieEntity;
 
 @Service
-public class MovieServices {
+public class MovieService {
 	
 	private MovieRepository movieRepository;
 	
 	@Autowired
-	public MovieServices(MovieRepository movieRepository) {
+	public MovieService(MovieRepository movieRepository) {
 		this.movieRepository=movieRepository;
 	}
 	
@@ -43,10 +43,9 @@ public class MovieServices {
 
     }
 	
-	public int deleteMovie(String movieName) {
-		return movieRepository.deleteMovieByName(movieName);
+	public void deleteMovie(String movieName) {
+		 movieRepository.deleteMovieByName(movieName);
 	}
-	
 	
       public List<MovieDto> getAllMovies()
       {  

@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.training.project.dto.CastDto;
 import com.training.project.dto.MovieDto;
-import com.training.project.services.CastServices;
+import com.training.project.services.CastService;
 
 @RestController
 @RequestMapping("/api/c1")
 public class CastController {
 	
-	private CastServices castServices;
-	public CastController(CastServices castServices) {
+	private CastService castServices;
+	public CastController(CastService castServices) {
 		this.castServices=castServices;
 	}
 	

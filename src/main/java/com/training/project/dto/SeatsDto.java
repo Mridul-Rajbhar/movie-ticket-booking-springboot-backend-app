@@ -54,10 +54,10 @@ public SeatsType getSeatType() {
 public void setSeatType(SeatsType seatsType) {
 	this.seatsType = seatsType;
 }
-public SeatsDto(int seatId, BookingDto bookingId, char seatRow, int seatNumber, SeatsType seatsType) {
+public SeatsDto(char seatRow, int seatNumber, SeatsType seatsType) {
 	super();
-	this.seatId = seatId;
-	this.bookingId = bookingId;
+	
+	
 	this.seatRow = seatRow;
 	this.seatNumber = seatNumber;
 	this.seatsType = seatsType;

@@ -19,18 +19,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.training.project.dto.MovieDto;
-import com.training.project.services.MovieServices;
+import com.training.project.services.MovieService;
 
 @RestController
 @RequestMapping("/api/v1")
 public class MovieController {
 	
-	private MovieServices movieServices;
+	private MovieService movieServices;
 	private Logger  logger = LoggerFactory.getLogger(MovieController.class);
 	
 	 
 	@Autowired
-	public MovieController(MovieServices movieServices) {
+	public MovieController(MovieService movieServices) {
 		this.movieServices=movieServices;
 		logger.info("MovieController is logged in console");
 	}
@@ -74,18 +74,13 @@ public class MovieController {
 	@GetMapping(value="/movies/{movieName}")
 	public ResponseEntity<MovieDto> getMovieByName(@PathVariable("movieName")String movieName) {
 	logger.info("get : http://localhost:8080/api/v1/movies/{movieName} ");
-	
 	this.movieServices.findMovieByName(movieName);
 	MovieDto movieDto= this.movieServices.findMovieByName(movieName);
-	
 	if(movieDto == null) {
 		logger.info("not found");
 	}
 	return ResponseEntity.ok(movieDto);
 	
-//	 List<MovieDto> listMovieDto =  this.movieServices.findMovieByName(movieName);
-//
-//     return ResponseEntity.ok(listMovieDto);
     }
 
 }
@@ -95,9 +90,3 @@ public class MovieController {
 
 
 
-//@CrossOrigin(origins="http://localhost:4200/")
-//@DeleteMapping(value="/movies/{movieName}")
-//public String deleteMovieByName(@PathVariable("movieName")String movieName) {
-//	return movieServices.deleteMovie(movieName)+ "Movie deleted";
-//	
-//}

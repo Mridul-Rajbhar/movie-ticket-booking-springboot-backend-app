@@ -27,7 +27,6 @@ public class SeatsEntity {
  @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
  @JoinColumn(name="booking_id",referencedColumnName="id")
  @JsonBackReference(value="booking_seats")
- /*@Enumerated(EnumType.STRING)*/
  private BookingEntity booking;
  
  @Column(name="seat_row")
@@ -75,9 +74,9 @@ public void setSeatsType(SeatsType seatsType) {
 public void setBooking(BookingEntity booking) {
 	this.booking = booking;
 }
-public SeatsEntity(Integer seatsId, BookingEntity booking, char seatRow, int seatNumber, SeatsType seatsType) {
+public SeatsEntity(BookingEntity booking, char seatRow, int seatNumber, SeatsType seatsType) {
 	super();
-	this.seatsId = seatsId;
+	
 	this.booking = booking;
 	this.seatRow = seatRow;
 	this.seatNumber = seatNumber;

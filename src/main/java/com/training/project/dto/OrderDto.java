@@ -63,10 +63,10 @@ public class OrderDto {
 		this.user = user;
 	}
 	
-	public OrderDto(Integer orderId, BookingDto booking, DiscountDto discount, CardType cardType, Bank bank,
+	public OrderDto(BookingDto booking, DiscountDto discount, CardType cardType, Bank bank,
 			Integer amount, UsersDto user) {
 		super();
-		this.orderId = orderId;
+		
 		this.booking = booking;
 		this.discount = discount;
 		this.cardType = cardType;

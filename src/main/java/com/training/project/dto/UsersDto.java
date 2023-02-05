@@ -59,10 +59,10 @@ public class UsersDto {
 
 	//constructors
 	
-	public UsersDto(Integer userId, ContactAddressDto contactAddress, String firstName, String lastName, String gender,
+	public UsersDto(ContactAddressDto contactAddress, String firstName, String lastName, String gender,
 			LocalDate dateOfBirth, String password) {
 		super();
-		this.userId = userId;
+		
 		this.contactAddress = contactAddress;
 		this.firstName = firstName;
 		this.lastName = lastName;

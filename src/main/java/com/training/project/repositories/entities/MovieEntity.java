@@ -52,6 +52,7 @@ public class MovieEntity {
 	@Column(name="image_url")
 	private String imageURL;
 	
+	
 	public String getImageURL() {
 		return imageURL;
 	}
@@ -63,7 +64,7 @@ public class MovieEntity {
 	
 	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,CascadeType.REFRESH})
 	@JoinTable(name = "movie_cast_join_table",joinColumns = { @JoinColumn(name = "movie_id") },inverseJoinColumns = { @JoinColumn(name = "cast_id")})
-	private Set<CastEntity> cast;
+	private List<CastEntity> cast;
 	
 	//setters and getters
 	
@@ -116,28 +117,32 @@ public class MovieEntity {
 	public void setReviews(List<ReviewsEntity> reviews) {
 		this.reviews = reviews;
 	}
-	public Set<CastEntity> getCast() {
+	public List<CastEntity> getCast() {
 		return cast;
 	}
-	public void setCast(Set<CastEntity> cast) {
+	public void setCast(List<CastEntity> cast) {
 		this.cast = cast;
 	}
 	// constructor
 	
-	public MovieEntity() {
-		
-	}
+	public MovieEntity() {}
+	
 	public MovieEntity(MovieGenre movieGenre, String movieName, LocalTime duration, String certificate,
-			LocalDate releaseDate, String description, Set<CastEntity> cast, String imageURL) {
-		super();
+			LocalDate releaseDate, String description, String imageURL) {
+		
 		this.movieGenre = movieGenre;
 		this.movieName = movieName;
 		this.duration = duration;
 		this.certificate = certificate;
 		this.releaseDate = releaseDate;
 		this.description = description;
-		this.cast = cast;
 		this.imageURL = imageURL;
+    	
 	}
 	
-}
+		
+	}
+	
+	
+	
+

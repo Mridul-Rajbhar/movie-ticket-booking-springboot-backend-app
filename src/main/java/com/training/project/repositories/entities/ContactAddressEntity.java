@@ -44,9 +44,9 @@ public class ContactAddressEntity {
 	}
 	
 	//constructor
-	public ContactAddressEntity(Integer contactAddressId, String mobileNumber, String email) {
+	public ContactAddressEntity( String mobileNumber, String email) {
 		super();
-		this.contactAddressId = contactAddressId;
+		
 		this.mobileNumber = mobileNumber;
 		this.email = email;
 	}

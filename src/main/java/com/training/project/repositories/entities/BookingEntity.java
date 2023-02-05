@@ -22,13 +22,12 @@ import org.hibernate.annotations.TypeDef;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.training.project.dto.MovieLanguage;
-import com.vladmihalcea.hibernate.type.array.StringArrayType;
+
 
 @Entity
 @Table(name="booking")
 
-@TypeDef(
-name = "string-array",typeClass = StringArrayType.class)
+
 public class BookingEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -109,10 +108,10 @@ public class BookingEntity {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public BookingEntity(Integer bookingId, MovieEntity movie, MovieLanguage language, String movieFormat,
+	public BookingEntity(MovieEntity movie, MovieLanguage language, String movieFormat,
 			LocalDate bookingDate, LocalTime bookingTime, List<SeatsEntity> seats) {
 		super();
-		this.bookingId = bookingId;
+		
 		this.movie = movie;
 		this.language = language;
 		this.movieFormat = movieFormat;

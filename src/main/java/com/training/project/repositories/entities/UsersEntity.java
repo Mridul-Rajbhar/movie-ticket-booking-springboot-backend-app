@@ -101,10 +101,10 @@ public class UsersEntity {
 
 	
 
-	public UsersEntity(Integer userId, ContactAddressEntity contactAddress, String firstName, String lastName,
+	public UsersEntity(ContactAddressEntity contactAddress, String firstName, String lastName,
 			String gender, LocalDate dateOfBirth, String password, List<OrderEntity> orders) {
 		super();
-		this.userId = userId;
+		
 		this.contactAddress = contactAddress;
 		this.firstName = firstName;
 		this.lastName = lastName;

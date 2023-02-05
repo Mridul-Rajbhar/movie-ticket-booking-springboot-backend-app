@@ -11,9 +11,8 @@ public class ReviewsDto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ReviewsDto(Integer reviewId, MovieDto movie, UsersDto user, Integer stars) {
+	public ReviewsDto(MovieDto movie, UsersDto user, Integer stars) {
 		super();
-		this.reviewId = reviewId;
 		this.movie = movie;
 		this.user = user;
 		this.stars = stars;
