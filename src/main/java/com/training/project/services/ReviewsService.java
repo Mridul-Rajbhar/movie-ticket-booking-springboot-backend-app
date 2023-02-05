@@ -8,7 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.training.project.dto.MovieDto;
 import com.training.project.dto.ReviewsDto;
+import com.training.project.dto.UsersDto;
 import com.training.project.repositories.ContactAddressRepository;
 import com.training.project.repositories.MovieRepository;
 import com.training.project.repositories.ReviewsRepository;
@@ -129,7 +131,20 @@ public class ReviewsService {
 				ReviewsEntity returnedReviewEntity =  checkReviewsEntity.get();
 				reviewDto = mapper.map(returnedReviewEntity, ReviewsDto.class);
 			}	
+			System.out.println(reviewDto);
 			return reviewDto;
 		}
 	
+		//get review by user and movie
+		public ReviewsDto findReviewByUserAndMovie(Integer userId, String movieName) {
+			System.out.println(movieName);
+			MovieEntity movieToBook = this.movieRepository.getByMovieName(movieName);
+			UsersEntity usersEntity = this.userRepository.findById(userId).get();
+			System.out.println(movieToBook);
+			System.out.println(usersEntity);
+			ReviewsEntity reviewsEntity = this.reviewsRepository.findReviewByUserAndMovie(usersEntity, movieToBook);
+			ReviewsDto reviewsDto  = mapper.map(reviewsEntity, ReviewsDto.class);
+			return reviewsDto;
+			
+		}
 }

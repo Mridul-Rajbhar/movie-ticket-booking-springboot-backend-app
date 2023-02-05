@@ -11,4 +11,5 @@ public interface ReviewsRepository extends JpaRepository<ReviewsEntity, Integer>
 	
 	@Query("FROM ReviewsEntity r WHERE r.user=?1 and r.movie=?2")
 	ReviewsEntity findReviewByUserAndMovie(UsersEntity user, MovieEntity movie);
+	
 }

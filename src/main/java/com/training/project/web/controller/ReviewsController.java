@@ -46,18 +46,26 @@ public class ReviewsController {
 			return new ResponseEntity<ReviewsDto>(reviewsDto, HttpStatus.OK);
 		}
 	
-	@CrossOrigin(origins="http://localhost:4200")
-	@PostMapping(value="/{userId}/{movieName}/reviews")
-	public ResponseEntity<ReviewsDto> addReviews(@RequestBody ReviewsDto reviewsDto,
-			@PathVariable Integer userId, @PathVariable String movieName){
-		ReviewsDto returnedReviewDto = reviewsService.saveReview(reviewsDto, userId, movieName);
-		return new ResponseEntity<ReviewsDto>(returnedReviewDto, HttpStatus.CREATED);
-	}
+//	@CrossOrigin(origins="http://localhost:4200")
+//	@PostMapping(value="/{userId}/{movieName}/reviews")
+//	public ResponseEntity<ReviewsDto> addReviews(@RequestBody ReviewsDto reviewsDto,
+//			@PathVariable Integer userId, @PathVariable String movieName){
+//		ReviewsDto returnedReviewDto = reviewsService.saveReview(reviewsDto, userId, movieName);
+//		return new ResponseEntity<ReviewsDto>(returnedReviewDto, HttpStatus.CREATED);
+//	}
 	
 	@CrossOrigin(origins="http://localhost:4200")
 	@GetMapping("/reviews/{id}")
 	public ResponseEntity<ReviewsDto> getReviews(@PathVariable Integer id){
 		ReviewsDto returnedReviewsDto = reviewsService.findReviewsById(id);
+		return new ResponseEntity<ReviewsDto>(returnedReviewsDto, HttpStatus.OK);
+	}
+	
+	@CrossOrigin(origins="http://localhost:4200")
+	@GetMapping("/reviews/{userId}/{movieName}")
+	public ResponseEntity<ReviewsDto> getReviewsByUserIdAndMovie(@PathVariable Integer userId,
+			@PathVariable String movieName){
+		ReviewsDto returnedReviewsDto = reviewsService.findReviewByUserAndMovie(userId, movieName);
 		return new ResponseEntity<ReviewsDto>(returnedReviewsDto, HttpStatus.OK);
 	}
 

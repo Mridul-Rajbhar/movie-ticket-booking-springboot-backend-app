@@ -28,9 +28,9 @@ public class ReviewsEntity {
 	@Column(name="comment")
 	private String comment;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="user_id", referencedColumnName = "id")
-	@JsonBackReference(value="user-review")
+	//@JsonBackReference(value="user-review")
 	private UsersEntity user;
 //	
 	@Column(name="stars")

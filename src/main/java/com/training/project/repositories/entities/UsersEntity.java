@@ -51,8 +51,8 @@ public class UsersEntity {
 	@JsonManagedReference(value="user-order")
 	private List<OrderEntity> orders;
 	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	@JsonManagedReference(value="user-review")
+	@OneToMany//(mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	//@JsonManagedReference(value="user-review")
 	private List<ReviewsEntity> reviews;
 	
 	
