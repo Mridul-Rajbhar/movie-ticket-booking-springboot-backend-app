@@ -41,30 +41,37 @@ public class SeatsService {
 		Optional<BookingEntity> checkBookingEntity = this.bookingRepository.findById(bookingId);
 		BookingEntity bookingEntity = checkBookingEntity!=null?checkBookingEntity.get():null;
 		seatsEntity.setBooking(bookingEntity);
-		System.out.println(seatsEntity);
+//		System.out.println(seatsEntity);
 		SeatsEntity returnedSeatsEntity = seatsRepository.save(seatsEntity);
 		SeatsDto seatDtoToReturn = mapper.map(returnedSeatsEntity, SeatsDto.class);
 		return seatDtoToReturn;
 	}
 	
 	//get all seats
-	public List<SeatsDto> getAllSeats(){
-		Iterable<SeatsEntity> seatEntitysReturned = this.seatsRepository.findAll();
-		List<SeatsDto> seatsDtoList = new ArrayList<>();
-		for(SeatsEntity seatsEntity: seatEntitysReturned) {
-			seatsDtoList.add(mapper.map(seatsEntity, SeatsDto.class));
+	public List<SeatsDto> getAllSeats()
+	{
+		ModelMapper mapper=new ModelMapper();
+		Iterable<SeatsEntity> listSeatsEntity= this.seatsRepository.findAll();
+		List<SeatsDto> listSeatsDto=new ArrayList<SeatsDto>();
+		for(SeatsEntity seatsEntity: listSeatsEntity) {
+			SeatsDto seatsDto=mapper.map(seatsEntity,SeatsDto.class);
+			listSeatsDto.add(seatsDto);
 		}
-		return seatsDtoList;
+		return listSeatsDto;
 	}
+
+
+	
 	
 	//get single seat
-	public SeatsDto getSingleSeat(Integer id) {
-		Optional<SeatsEntity> checkSeatsEntity = this.seatsRepository.findById(id);
-		SeatsDto seatDto = null;
-			if(checkSeatsEntity.isPresent()) {
-				SeatsEntity returnedSeatEntity =  checkSeatsEntity.get();
-				seatDto = mapper.map(returnedSeatEntity, SeatsDto.class);
-			}	
-			return seatDto;
+	public SeatsDto findSeatsByID(Integer id) {
+	       ModelMapper mapper = new ModelMapper();
+	       SeatsDto seatsDto = null;
+	       Optional<SeatsEntity> optional =  this.seatsRepository.findById(id);
+	       if(optional.isPresent()) {
+	           SeatsEntity seatsEntity =  optional.get();
+	          seatsDto = mapper.map(seatsEntity, SeatsDto.class);
+	        }
+	       return seatsDto;
 		}
 }

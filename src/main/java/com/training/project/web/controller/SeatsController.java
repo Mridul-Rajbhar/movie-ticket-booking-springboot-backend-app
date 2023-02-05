@@ -21,15 +21,15 @@ public class SeatsController {
 	@Autowired
 	private SeatsService seatsService;
 	
-	@PostMapping(value="/{bookingId}/seats")
+	@PostMapping(value="/seats/{bookingId}")
 	public ResponseEntity<SeatsDto> addSeats(@RequestBody SeatsDto seatsDto, @PathVariable Integer bookingId){
 		SeatsDto returnedSeatsDto = this.seatsService.saveSeats(seatsDto, bookingId);
 		return new ResponseEntity<SeatsDto>(returnedSeatsDto, HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/seats/{id}")
-	public ResponseEntity<SeatsDto> getSeats(@PathVariable Integer id){
-		SeatsDto returnedSeatsDto = this.seatsService.getSingleSeat(id);
+	public ResponseEntity<SeatsDto> getSeatsById(@PathVariable Integer id){
+		SeatsDto returnedSeatsDto = this.seatsService.findSeatsByID(id);
 		return new ResponseEntity<SeatsDto>(returnedSeatsDto, HttpStatus.OK);
 	}
 	

@@ -79,4 +79,11 @@ public class MovieService {
 		
 		return movieReviewsDtoToReturn;
 	}
+	
+	//delete movie by name
+	public void deleteMovie(String movieName) {
+		movieRepository.deleteMovieByName(movieName);
+	}
+
+
 }
