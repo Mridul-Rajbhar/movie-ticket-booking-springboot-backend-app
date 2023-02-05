@@ -4,39 +4,43 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-public class Booking {
+
+public class BookingDto {
 	private Integer bookingId;
-	private Movie movie;
-	private Users user;
+	private MovieDto movie;
 	private MovieLanguage language;
 	private String movieFormat;
 	private LocalDate bookingDate;
 	private LocalTime bookingTime;
-	private List<String> seats;
+	
+	@JsonManagedReference(value="booking_seats")
+	private List<SeatsDto> seats;
 	
 
 	//setters and getters
 	
 	
+	public List<SeatsDto> getSeats() {
+		return seats;
+	}
+	public void setSeats(List<SeatsDto> seats) {
+		this.seats = seats;
+	}
 	public Integer getBookingId() {
 		return bookingId;
 	}
 	public void setBookingId(Integer bookingId) {
 		this.bookingId = bookingId;
 	}
-	public Movie getMovie() {
+	public MovieDto getMovie() {
 		return movie;
 	}
-	public void setMovie(Movie movie) {
+	public void setMovie(MovieDto movie) {
 		this.movie = movie;
 	}
-	public Users getUser() {
-		return user;
-	}
-	public void setUser(Users user) {
-		this.user = user;
-	}
+	
 	public MovieLanguage getLanguage() {
 		return language;
 	}
@@ -61,29 +65,34 @@ public class Booking {
 	public void setBookingTime(LocalTime bookingTime) {
 		this.bookingTime = bookingTime;
 	}
-	public List<String> getSeats() {
-		return seats;
-	}
-	public void setSeats(List<String> seats) {
-		this.seats = seats;
-	}
+	
+
 	//constructors
-	public Booking(Integer bookingId, Movie movie, Users user, MovieLanguage language, String movieFormat,
-			LocalDate bookingDate, LocalTime bookingTime, List<String> seats) {
+	public BookingDto(MovieDto movie, MovieLanguage language, String movieFormat,
+			LocalDate bookingDate, LocalTime bookingTime) {
 		super();
-		this.bookingId = bookingId;
 		this.movie = movie;
-		this.user = user;
 		this.language = language;
 		this.movieFormat = movieFormat;
 		this.bookingDate = bookingDate;
 		this.bookingTime = bookingTime;
-		this.seats = seats;
 	}
-	public Booking() {
+
+	public BookingDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	@Override
+	public String toString() {
+		return "BookingDto [bookingId=" + bookingId + ", movie=" + movie + ", language=" + language + ", movieFormat="
+				+ movieFormat + ", bookingDate=" + bookingDate + ", bookingTime=" + bookingTime + ", seats=" + this.seats
+				+ "]";
+	}
+	
+	
+	
+	
+	
 	
 	
 }

@@ -1,13 +1,16 @@
 package com.training.project.dto;
 
-public class Order {
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+public class OrderDto {
 	private Integer orderId;
-	private Booking booking;
-	private Discount discount;
+	private BookingDto booking;
+	private DiscountDto discount;
 	private CardType cardType;
 	private Bank bank;
 	private Integer amount;
-	
+	@JsonBackReference(value="user-order")
+	private UsersDto user;
 	//setters and getters 
 	
 	public Integer getOrderId() {
@@ -16,16 +19,16 @@ public class Order {
 	public void setOrderId(Integer orderId) {
 		this.orderId = orderId;
 	}
-	public Booking getBooking() {
+	public BookingDto getBooking() {
 		return booking;
 	}
-	public void setBooking(Booking booking) {
+	public void setBooking(BookingDto booking) {
 		this.booking = booking;
 	}
-	public Discount getDiscount() {
+	public DiscountDto getDiscount() {
 		return discount;
 	}
-	public void setDiscount(Discount discount) {
+	public void setDiscount(DiscountDto discount) {
 		this.discount = discount;
 	}
 	public CardType getCardType() {
@@ -49,19 +52,33 @@ public class Order {
 	
 	//constructors 
 	
-	public Order(Integer orderId, Booking booking, Discount discount, CardType cardType, Bank bank, Integer amount) {
+	public UsersDto getUser() {
+		return user;
+	}
+	public void setUser(UsersDto user) {
+		this.user = user;
+	}
+	public OrderDto(BookingDto booking, DiscountDto discount,
+			CardType cardType, Bank bank, Integer amount, UsersDto user) {
 		super();
-		this.orderId = orderId;
 		this.booking = booking;
 		this.discount = discount;
 		this.cardType = cardType;
 		this.bank = bank;
 		this.amount = amount;
+		this.user = user;
 	}
-	public Order() {
+	public OrderDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	@Override
+	public String toString() {
+		return "OrderDto [orderId=" + orderId + ", booking=" + booking + ", discount=" + discount + ", cardType="
+				+ cardType + ", bank=" + bank + ", amount=" + amount + ", user=" + user + "]";
+	}
+	
+	
 	
 	
 	 

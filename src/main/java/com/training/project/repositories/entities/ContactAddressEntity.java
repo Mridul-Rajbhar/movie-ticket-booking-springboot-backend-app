@@ -1,9 +1,25 @@
-package com.training.project.dto;
+package com.training.project.repositories.entities;
 
-public class ContactAddress {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="contact_address")
+public class ContactAddressEntity {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id")
 	private Integer contactAddressId;
+	
+	@Column(name="mobile_no")
 	private String mobileNumber;
+	
+	@Column(name="email")
 	private String email;
 	
 	
@@ -29,13 +45,12 @@ public class ContactAddress {
 	}
 	
 	//constructor
-	public ContactAddress(Integer contactAddressId, String mobileNumber, String email) {
+	public ContactAddressEntity(String mobileNumber, String email) {
 		super();
-		this.contactAddressId = contactAddressId;
 		this.mobileNumber = mobileNumber;
 		this.email = email;
 	}
-	public ContactAddress() {
+	public ContactAddressEntity() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
