@@ -17,7 +17,7 @@ public class DiscountRepositoryTests {
 	private DiscountRepository discountRepository;
 	
 	@Test
-	public void update_disocunt_change_discount_percentage() {
+	public void update_discount_change_discount_percentage() {
 		//setup
 		DiscountEntity discountEntity5Percentage = new DiscountEntity(Bank.Axis, 5.0);
 		//save discount before update
@@ -35,4 +35,5 @@ public class DiscountRepositoryTests {
 		assertThat(updatedVersion).isNotNull();
 		assertThat(updatedVersion.getDiscountPercentage()).isEqualTo(2.00);
 	}
+	
 }
