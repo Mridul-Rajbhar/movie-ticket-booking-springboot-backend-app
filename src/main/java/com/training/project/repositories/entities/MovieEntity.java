@@ -137,10 +137,9 @@ public class MovieEntity {
 	
 	
 	// constructor
-	public MovieEntity( Integer movieId, MovieGenre movieGenre, String movieName, LocalTime duration, String certificate,
+	public MovieEntity(MovieGenre movieGenre, String movieName, LocalTime duration, String certificate,
 			LocalDate releaseDate, String description, String imageURL) {
 		super();
-		this.movieId = movieId;
 		this.movieGenre = movieGenre;
 		this.movieName = movieName;
 		this.duration = duration;

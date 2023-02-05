@@ -48,6 +48,7 @@ public class UsersEntity {
 	private String password;
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonManagedReference(value="user-order")
 	private List<OrderEntity> orders;
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
@@ -111,10 +112,9 @@ public class UsersEntity {
 
 	//constructors
 	
-	public UsersEntity(Integer userId, ContactAddressEntity contactAddress, String firstName, String lastName, String gender,
+	public UsersEntity(ContactAddressEntity contactAddress, String firstName, String lastName, String gender,
 			LocalDate dateOfBirth, String password) {
 		super();
-		this.userId = userId;
 		this.contactAddress = contactAddress;
 		this.firstName = firstName;
 		this.lastName = lastName;

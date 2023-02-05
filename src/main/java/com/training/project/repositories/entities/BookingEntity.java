@@ -24,7 +24,6 @@ import org.hibernate.annotations.TypeDef;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.training.project.dto.MovieLanguage;
 import com.training.project.dto.SeatsDto;
-import com.vladmihalcea.hibernate.type.array.StringArrayType;
 
 @Entity
 @Table(name="booking")

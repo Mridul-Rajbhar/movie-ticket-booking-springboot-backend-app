@@ -42,11 +42,64 @@ public class ReviewsService {
 		mapper = new ModelMapper();
 	}
 	
-	//create reviews
-	public ReviewsDto saveReview(ReviewsDto reviewsDto, String userEmail, String movieName) {
+	
+	//post review with star
+	public ReviewsDto saveReviewStar(Integer star, Integer userId, String movieName) {
 		MovieEntity movieToBook = this.movieRepository.getByMovieName(movieName);
-		ContactAddressEntity contactAddressEntity = this.contactAddressRepository.getByEmail(userEmail);
-		UsersEntity usersEntity = this.userRepository.getByContactAddress(contactAddressEntity);
+		UsersEntity usersEntity = this.userRepository.findById(userId).get();
+		
+		ReviewsEntity reviewsEntity = this.reviewsRepository.findReviewByUserAndMovie(usersEntity, movieToBook);
+		ReviewsEntity returnedReviewEntity = null;
+		if(reviewsEntity!=null) {
+			reviewsEntity.setStars(star);
+			returnedReviewEntity = this.reviewsRepository.save(reviewsEntity);
+		}
+		else {
+			reviewsEntity = new ReviewsEntity();
+			reviewsEntity.setMovie(movieToBook);
+			reviewsEntity.setUser(usersEntity);
+			reviewsEntity.setStars(star);
+			reviewsEntity.setComment("");
+			returnedReviewEntity = this.reviewsRepository.save(reviewsEntity);
+		}
+		
+		ReviewsDto reviewsDto = mapper.map(returnedReviewEntity, ReviewsDto.class);
+		return reviewsDto;
+		
+	}
+	
+	
+	//save review with comment
+	public ReviewsDto saveReviewComment(String comment, Integer userId, String movieName) {
+		MovieEntity movieToBook = this.movieRepository.getByMovieName(movieName);
+		UsersEntity usersEntity = this.userRepository.findById(userId).get();
+		
+		ReviewsEntity reviewsEntity = this.reviewsRepository.findReviewByUserAndMovie(usersEntity, movieToBook);
+		ReviewsEntity returnedReviewEntity = null;
+		if(reviewsEntity!=null) {
+			reviewsEntity.setComment(comment);
+			returnedReviewEntity = this.reviewsRepository.save(reviewsEntity);
+		}
+		else {
+			reviewsEntity = new ReviewsEntity();
+			reviewsEntity.setMovie(movieToBook);
+			reviewsEntity.setUser(usersEntity);
+			reviewsEntity.setStars(null);
+			reviewsEntity.setComment(comment);
+			returnedReviewEntity = this.reviewsRepository.save(reviewsEntity);
+		}
+		
+		ReviewsDto reviewsDto = mapper.map(returnedReviewEntity, ReviewsDto.class);
+		return reviewsDto;
+		
+	}
+	
+	
+	
+	//create reviews
+	public ReviewsDto saveReview(ReviewsDto reviewsDto, Integer userId, String movieName) {
+		MovieEntity movieToBook = this.movieRepository.getByMovieName(movieName);
+		UsersEntity usersEntity = this.userRepository.findById(userId).get();
 		
 		ReviewsEntity reviewsEntity = mapper.map(reviewsDto, ReviewsEntity.class);
 				

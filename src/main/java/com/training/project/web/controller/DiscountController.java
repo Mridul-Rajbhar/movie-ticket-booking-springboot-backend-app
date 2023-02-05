@@ -33,6 +33,7 @@ public class DiscountController {
 		logger.info("Discount Controller constructor created");
 	}
 	
+	//get all discounts
 	@CrossOrigin(origins="http://localhost:4200")
 	@GetMapping(value="discount")
 	public ResponseEntity<List<DiscountDto>> getAllDiscounts(){
@@ -40,6 +41,7 @@ public class DiscountController {
 		return new ResponseEntity<List<DiscountDto>>(discountList, HttpStatus.OK);
 	}
 	
+	//add a new discount
 	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping(value="discount")
 	public ResponseEntity<DiscountDto> addDiscount(@RequestBody DiscountDto discountDto){
@@ -47,6 +49,7 @@ public class DiscountController {
 		return new ResponseEntity<DiscountDto>(returnedDiscountDto, HttpStatus.CREATED);
 	}
 	
+	//get discount by id
 	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/discount/{id}")
 	public ResponseEntity<DiscountDto> getDiscount(@PathVariable Integer id){
@@ -55,6 +58,16 @@ public class DiscountController {
 		return new ResponseEntity<DiscountDto>(returnedDiscountDto, HttpStatus.OK);
 	}
 	
+	//get discount by bank name
+	@CrossOrigin(origins = "http://localhost:4200")
+	@GetMapping("/discount/bankName/{bankName}")
+	public ResponseEntity<DiscountDto> getDiscountByName(@PathVariable String bankName){
+		Bank bankNameEnum = Bank.valueOf(bankName);
+		DiscountDto returnedDiscountDto = this.discountService.getDiscountByBankname(bankNameEnum);
+		return new ResponseEntity<DiscountDto>(returnedDiscountDto, HttpStatus.OK);
+	}
+	
+	//update discount by discount object
 	@CrossOrigin(origins = "http://localhost:4200")
 	@PutMapping("/discount")
 	public ResponseEntity<DiscountDto> findDiscount(@RequestBody DiscountDto discountDto){

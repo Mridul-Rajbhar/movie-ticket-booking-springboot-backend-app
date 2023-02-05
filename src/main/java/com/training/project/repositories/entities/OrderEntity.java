@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.training.project.dto.Bank;
 import com.training.project.dto.BookingDto;
 import com.training.project.dto.CardType;
@@ -51,6 +52,7 @@ public class OrderEntity {
 	@ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.PERSIST,
 			CascadeType.DETACH, CascadeType.MERGE})
 	@JoinColumn(name="user_id")
+	@JsonBackReference(value="user-order")
 	private UsersEntity user;
 	
 	//setters and getters 
@@ -114,6 +116,13 @@ public class OrderEntity {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	@Override
+	public String toString() {
+		return "OrderEntity [orderId=" + orderId + ", booking=" + booking + ", discount=" + discount + ", cardType="
+				+ cardType + ", bank=" + bank + ", amount=" + amount + ", user=" + user + "]";
+	}
+	
+	
 
 	
 }

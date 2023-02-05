@@ -15,6 +15,7 @@ public class UsersDto {
 	private String gender;
 	private LocalDate dateOfBirth;
 	private String password;
+	@JsonManagedReference(value="user-order")
 	private List<OrderDto> orders;
 	@JsonManagedReference(value="user-review")
 	private List<ReviewsDto> reviews ;

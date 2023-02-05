@@ -25,7 +25,7 @@ public class DiscountEntity {
 	private Bank bankName;
 	
 	@Column(name="discount_percentage")
-	private Float discountPercentage;
+	private double discountPercentage;
 	
 	//getters and setters
 	public Integer getDiscountId() {
@@ -40,23 +40,30 @@ public class DiscountEntity {
 	public void setBankName(Bank bankName) {
 		this.bankName = bankName;
 	}
-	public Float getDiscountPercentage() {
+	public double getDiscountPercentage() {
 		return discountPercentage;
 	}
-	public void setDiscountPercentage(Float discountPercentage) {
+	public void setDiscountPercentage(double discountPercentage) {
 		this.discountPercentage = discountPercentage;
 	}
 	
 	//constructors
-	public DiscountEntity(Bank bankName, Float discountPercentage) {
+	public DiscountEntity(Bank bankName, double d) {
 		super();
 		this.bankName = bankName;
-		this.discountPercentage = discountPercentage;
+		this.discountPercentage = d;
 	}
 	public DiscountEntity() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	@Override
+	public String toString() {
+		return "DiscountEntity [discountId=" + discountId + ", bankName=" + bankName + ", discountPercentage="
+				+ discountPercentage + "]";
+	}
+	
+	
 	
 	 
 	

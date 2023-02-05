@@ -1,5 +1,7 @@
 package com.training.project.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 public class OrderDto {
 	private Integer orderId;
 	private BookingDto booking;
@@ -7,6 +9,7 @@ public class OrderDto {
 	private CardType cardType;
 	private Bank bank;
 	private Integer amount;
+	@JsonBackReference(value="user-order")
 	private UsersDto user;
 	//setters and getters 
 	
@@ -69,6 +72,13 @@ public class OrderDto {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	@Override
+	public String toString() {
+		return "OrderDto [orderId=" + orderId + ", booking=" + booking + ", discount=" + discount + ", cardType="
+				+ cardType + ", bank=" + bank + ", amount=" + amount + ", user=" + user + "]";
+	}
+	
+	
 	
 	
 	 

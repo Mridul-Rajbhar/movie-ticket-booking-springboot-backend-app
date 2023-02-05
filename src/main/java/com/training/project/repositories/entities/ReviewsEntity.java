@@ -86,7 +86,7 @@ public class ReviewsEntity {
 	
 	@Override
 	public String toString() {
-		return "ReviewsEntity [reviewId=" + reviewId + ", movie=" + movie + ", stars=" + stars + "comment" + comment + "]";
+		return "ReviewsEntity [reviewId=" + reviewId + ", stars=" + stars + "comment" + comment + "]";
 	}
 	
 	

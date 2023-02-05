@@ -50,7 +50,7 @@ public class DiscountService {
 		return returnedDiscountDto;
 	}
 	
-	//get discount object
+	//get discount object by id
 		public DiscountDto getDiscountById(Integer discountId) {
 			Optional<DiscountEntity> checkDiscountEntity = this.discountRepository.findById(discountId);
 			DiscountDto discountDto = null;
@@ -62,6 +62,12 @@ public class DiscountService {
 			}
 
 	
+	public DiscountDto getDiscountByBankname(Bank bankName) {
+		DiscountEntity discountEntity =this.discountRepository.getByBankName(bankName);
+		DiscountDto returnedDiscountDto = mapper.map(discountEntity, DiscountDto.class);
+		 return returnedDiscountDto;
+	}
+		
 	//update Discount 
 	public DiscountDto updateDiscountByBankName(DiscountDto discountDto) {
 		DiscountEntity discountEntity = this.discountRepository.getByBankName(discountDto.getBankName());

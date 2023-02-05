@@ -59,7 +59,7 @@ public class ReviewsDto {
 	}
 	@Override
 	public String toString() {
-		return "ReviewsDto [reviewId=" + reviewId + ", movie=" + movie + ", user=" + ", stars=" + stars + "]";
+		return "ReviewsDto [reviewId=" + reviewId + ", user=" + ", stars=" + stars + "]";
 	}
 	
 	

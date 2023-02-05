@@ -1,5 +1,7 @@
 package com.training.project.services;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
@@ -9,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.training.project.dto.MovieDto;
+import com.training.project.dto.ReviewsDto;
 import com.training.project.repositories.MovieRepository;
 import com.training.project.repositories.entities.MovieEntity;
+import com.training.project.repositories.entities.ReviewsEntity;
 
 @Service
 public class MovieService {
@@ -24,6 +28,18 @@ public class MovieService {
 		mapper = new ModelMapper();
 	}
 	
+	//getAllMovies
+	public List<MovieDto> getAllMovies(){
+		Iterable<MovieEntity> allMoviesEntity = this.movieRepository.findAll();
+		List<MovieDto> movieDtosToReturn = new ArrayList<>();
+		for(MovieEntity movieEntity: allMoviesEntity) {
+			MovieDto movieDto = mapper.map(movieEntity, MovieDto.class);
+			movieDtosToReturn.add(movieDto);
+		}
+		
+		return movieDtosToReturn;
+	}
+	
 	//create movie
 	public MovieDto saveMovie(MovieDto movieDto) {
 		logger.info("save Movie function called");
@@ -33,7 +49,7 @@ public class MovieService {
 		return returnedMovieDto;
 	}
 	
-	//get movie
+	//get movie by id
 	public MovieDto findMovieById(Integer movieId) {
 		Optional<MovieEntity> checkMovieEntity = this.movieRepository.findById(movieId);
 		MovieDto movieDto = null;
@@ -51,5 +67,16 @@ public class MovieService {
 		return movieToReturn;
 	}
 	
-	//
+	//get all movie reviews
+	public List<ReviewsDto> getAllReviewsForMovie(String movieName){
+		MovieEntity movieEntityFound = this.movieRepository.getByMovieName(movieName);
+		List<ReviewsEntity> movieReviews = movieEntityFound.getReviews();
+		List<ReviewsDto> movieReviewsDtoToReturn = new ArrayList<>();
+		for(ReviewsEntity reviewsEntity: movieReviews) {
+			ReviewsDto reviewsDto = mapper.map(reviewsEntity, ReviewsDto.class);
+			movieReviewsDtoToReturn.add(reviewsDto);
+		}
+		
+		return movieReviewsDtoToReturn;
+	}
 }
