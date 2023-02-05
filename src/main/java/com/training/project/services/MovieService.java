@@ -8,9 +8,13 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.training.project.dto.MovieDto;
+import com.training.project.dto.MovieGenre;
 import com.training.project.dto.ReviewsDto;
 import com.training.project.repositories.MovieRepository;
 import com.training.project.repositories.entities.MovieEntity;
@@ -85,5 +89,22 @@ public class MovieService {
 		movieRepository.deleteMovieByName(movieName);
 	}
 
+	//Pagination
+		public Page<MovieDto> getMoviePagination(Integer pageNumber, Integer pageSize) {
+			ModelMapper mapper = new ModelMapper();
+			Pageable pageable = PageRequest.of(pageNumber, pageSize);
+			Page<MovieDto> pageMovieDTO = movieRepository.findAll(pageable).map(
+					movieEntity -> mapper.map(movieEntity, MovieDto.class));
+			return pageMovieDTO;
+		}
+		
+		//Sorting based on MovieGenre
+		public Page<MovieDto> getMovieByGenrePagination(MovieGenre movieGenre, Integer pageNumber, Integer pageSize) {
+			ModelMapper mapper = new ModelMapper();
+			Pageable pageable = PageRequest.of(pageNumber, pageSize);
+			Page<MovieDto> pageMovieDTO = movieRepository.getByMovieGenre(movieGenre, pageable).map(
+					movieEntity -> mapper.map(movieEntity, MovieDto.class));
+			return pageMovieDTO;
+		}
 
 }
