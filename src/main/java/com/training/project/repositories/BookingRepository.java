@@ -18,5 +18,6 @@ public interface BookingRepository extends JpaRepository<BookingEntity, Integer>
 //	@Query("from booking e where e.language=?1 and e.movieFormat = ?2  and"
 //			+ " e.bookingDate=?3 and e.bookingTime=?4 and e.movie=?5")
 //    public List<BookingEntity> getBookingsForShow(MovieLanguage movieLanguage, String movieFormat,
-//	LocalDate bookingDate, LocalTime bookingTime, MovieEntity movie);
+//LocalDate bookingDate, LocalTime bookingTime, MovieEntity movie);
+	
 }

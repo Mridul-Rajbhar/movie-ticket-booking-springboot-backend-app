@@ -36,16 +36,12 @@ public class SeatService {
 	public SeatsDto findSeatsByID(Integer id) {
 	       ModelMapper mapper = new ModelMapper();
 	       SeatsDto seatsDto = null;
-
 	       Optional<SeatsEntity> optional =  this.seatsRepository.findById(id);
-
 	       if(optional.isPresent()) {
 	           SeatsEntity seatsEntity =  optional.get();
 	          seatsDto = mapper.map(seatsEntity, SeatsDto.class);
 	        }
-
 	       return seatsDto;
-
     }
 	
 	public List<SeatsDto> getAllSeats()

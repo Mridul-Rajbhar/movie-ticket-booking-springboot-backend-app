@@ -40,7 +40,6 @@ public class MovieService {
              movieDto = mapper.map(movieEntity, MovieDto.class);
          }
         return movieDto;
-
     }
 	
 	public void deleteMovie(String movieName) {

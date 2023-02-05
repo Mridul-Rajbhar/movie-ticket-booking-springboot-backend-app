@@ -51,6 +51,11 @@ public class BookingController {
 		return ResponseEntity.ok(bookingDTO);
 	}
 	
+	
+	
+	
+	
+	
 //	@CrossOrigin(origins="http://localhost:4200/")
 //	@GetMapping(value="/bookings/{movieName}")
 //	public ResponseEntity<BookingDto> getAllBookingsForShow(@PathVariable("movieName")String movieName) {

@@ -31,10 +31,14 @@ public class MovieRepositoryTests {
 	@Test
 	public void givenMovieObject_whenSaved_thenNewMovieCreated() {
 		//given-precondition order
-		List<CastEntity> listCast=new ArrayList<>();
+		List<CastEntity> listCast=new ArrayList<CastEntity>();
+		
 	 CastEntity cast1=new CastEntity("Allu Arjun","Actor");
+	 listCast.add(cast1);
 	 MovieEntity movie1=new MovieEntity(MovieGenre.Action,"bahubali",LocalTime.now(),"A", LocalDate.now(), "this is bahubali movie","assets/Movies/images");	
-	  movie1.setCast((List<CastEntity>)cast1);   
+	  movie1.setCast(listCast);  
+	  
+	  
 		//when-action or the behaviour we are testing
 	  MovieEntity newCreatedMovie= movieRepository.save(movie1);
 	  System.out.println("movie saved - " + newCreatedMovie);

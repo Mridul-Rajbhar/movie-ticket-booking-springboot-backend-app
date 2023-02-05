@@ -29,6 +29,7 @@ public class BookingService {
 	public BookingService(BookingRepository bookingRepository) {
 		this.bookingRepository=bookingRepository;
 	}
+	
    public BookingDto saveBooking(BookingDto booking) {
 	   ModelMapper mapper=new ModelMapper();
 	   BookingEntity bookingEntity=mapper.map(booking,BookingEntity.class);
@@ -59,6 +60,7 @@ public class BookingService {
         }
        return bookingDto;
         }
+   
    
 //   public List<SeatsDto> getAllBookingForShow(MovieLanguage movieLanguage, String movieFormat,
 //			LocalDate bookingDate, LocalTime bookingTime, MovieEntity movie){ 
