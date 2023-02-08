@@ -77,13 +77,11 @@ public class SeatsEntity {
 	public void setBooking(BookingEntity booking) {
 		this.booking = booking;
 	}
-	public SeatsEntity(char seatRow, int seatNumber, SeatsType seatType, BookingEntity
-			booking) {
+	public SeatsEntity(char seatRow, int seatNumber, SeatsType seatType) {
 		super();
 		this.seatRow = seatRow;
 		this.seatNumber = seatNumber;
 		this.seatType = seatType;
-		this.booking = booking;
 	}
 
 	public SeatsEntity() {

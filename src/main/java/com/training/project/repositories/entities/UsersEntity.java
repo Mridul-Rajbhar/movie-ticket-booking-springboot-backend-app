@@ -127,6 +127,13 @@ public class UsersEntity {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	@Override
+	public String toString() {
+		return "UsersEntity [userId=" + userId + ", contactAddress=" + contactAddress + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", gender=" + gender + ", dateOfBirth=" + dateOfBirth + ", password="
+				+ password + ", orders=" + orders + "]";
+	}
+	
 	
 	
 	

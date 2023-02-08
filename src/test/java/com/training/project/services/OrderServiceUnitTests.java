@@ -4,9 +4,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.catalina.mapper.Mapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,17 +27,22 @@ import com.training.project.dto.MovieDto;
 import com.training.project.dto.MovieGenre;
 import com.training.project.dto.MovieLanguage;
 import com.training.project.dto.OrderDto;
+import com.training.project.dto.SeatsType;
 import com.training.project.dto.UsersDto;
 import com.training.project.repositories.BookingRepository;
 import com.training.project.repositories.DiscountRepository;
 import com.training.project.repositories.MovieRepository;
 import com.training.project.repositories.OrderRepository;
+import com.training.project.repositories.SeatsRepository;
 import com.training.project.repositories.UsersRepository;
 import com.training.project.repositories.entities.BookingEntity;
+import com.training.project.repositories.entities.CastEntity;
 import com.training.project.repositories.entities.ContactAddressEntity;
 import com.training.project.repositories.entities.DiscountEntity;
 import com.training.project.repositories.entities.MovieEntity;
 import com.training.project.repositories.entities.OrderEntity;
+import com.training.project.repositories.entities.ReviewsEntity;
+import com.training.project.repositories.entities.SeatsEntity;
 import com.training.project.repositories.entities.UsersEntity;
 
 @ExtendWith(MockitoExtension.class)
@@ -57,6 +64,9 @@ public class OrderServiceUnitTests {
 	
 	@Mock
 	private BookingRepository bookingRepository;
+	
+	@Mock
+	private SeatsRepository seatsRepository;
 	
 	@InjectMocks
 	private OrderService orderService;
@@ -115,29 +125,55 @@ public class OrderServiceUnitTests {
 		@DisplayName("Junit test for saving orders")
 		@Test
 		public void givenOrders_whenSaved_thenNewSavedOrderObject() {
-			//given
+			// given - precondition or setup
+			
+			//set users
 			ContactAddressEntity contactAddressEntity = new ContactAddressEntity("8928015475","mrodil@gmail.com");
 			UsersEntity user = new  UsersEntity(contactAddressEntity,"Mridul","Rajbhar","Male",LocalDate.of(2023, 12, 21), "1231");
+			System.out.println(user);
+			this.userRepository.save(user);
 			
+			//set movies
 			MovieEntity movieEntity = new MovieEntity(MovieGenre.Action, "Pathaan", LocalTime.now(),"UA",LocalDate.of(2022, 2, 1),
 					"desctription", "url");
+			CastEntity cast1 = new CastEntity("mridul", "actor");
+			List<CastEntity> casts = new ArrayList<>();
+			casts.add(cast1);
+			movieEntity.setCast(casts);
+			movieEntity.setReviews(new ArrayList<ReviewsEntity>());
+			this.movieRepository.save(movieEntity);
+			
+			DiscountEntity discountEntity = new DiscountEntity(Bank.Axis, 32.33);
+			this.discountRepository.save(discountEntity);
+			
 			BookingEntity bookingEntity = new BookingEntity(movieEntity, MovieLanguage.English, 
 					"2d", LocalDate.of(2023,2, 2), LocalTime.now());
 			
-			DiscountEntity discountEntity = new DiscountEntity(Bank.Axis, 32.33);
+			SeatsEntity seat1 = new SeatsEntity('A',2,SeatsType.Premium);
+			List<SeatsEntity> seatsSelected = new ArrayList<>();
+			seatsSelected.add(seat1);
+			
+			bookingEntity.setSeats(seatsSelected);
+			this.bookingRepository.save(bookingEntity);
+			
+			
 			OrderEntity order1 = new OrderEntity(bookingEntity, discountEntity, CardType.Debit, Bank.Axis,570, user);
+			System.out.println(order1);
 			
-			BDDMockito.given(userRepository.save(user)).willReturn(user);
-			BDDMockito.given(movieRepository.save(movieEntity)).willReturn(movieEntity);
-			BDDMockito.given(bookingRepository.save(bookingEntity)).willReturn(bookingEntity);
+			this.orderRepository.save(order1);
 			
+			OrderDto orderDtoToGive = modelMapper.map(order1, OrderDto.class);
+			System.out.println(orderDtoToGive);
+			
+			//given 
+			BDDMockito.given(orderRepository.save(order1)).willReturn(order1);
 			
 			//when
-			OrderDto savedOrderDto = this.orderService.saveOrder(modelMapper.map(order1,OrderDto.class), 1,  "Pathan");
+			OrderDto orderDtoToReturn = orderService.saveOrder(orderDtoToGive, 1, "Pathaan");
 			
-			
-			//then 
-			assertThat(savedOrderDto).isNotNull();
+			//then
+			assertThat(orderDtoToReturn).isNotNull();
+			assertThat(orderDtoToReturn.getAmount()).isEqualTo(570);
 			
 		}
 
