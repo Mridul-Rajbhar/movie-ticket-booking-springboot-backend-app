@@ -1,5 +1,6 @@
 package com.training.project.web.controller;
 
+import org.apache.catalina.connector.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,11 @@ public class UsersController {
 		return new ResponseEntity<UsersDto>(returnedUsersDto, HttpStatus.OK);
 	}
 
+	@CrossOrigin(origins = "http://localhost:4200")
+	@GetMapping("/users/email/{email}")
+	public ResponseEntity<UsersDto> getUserByEmail(@PathVariable String email){
+		UsersDto returnedUserDto = this.usersService.findUserByEmail(email);
+		return new ResponseEntity<UsersDto>(returnedUserDto, HttpStatus.OK);
+	}
 	
 }

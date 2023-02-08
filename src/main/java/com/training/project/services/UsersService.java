@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.training.project.dto.UsersDto;
+import com.training.project.repositories.ContactAddressRepository;
 import com.training.project.repositories.UsersRepository;
+import com.training.project.repositories.entities.ContactAddressEntity;
 import com.training.project.repositories.entities.UsersEntity;
 
 @Service
@@ -17,6 +19,10 @@ public class UsersService {
 
 	@Autowired
 	private UsersRepository usersRepository;
+	
+	@Autowired
+	private ContactAddressRepository contactAddressRepository;
+	
 	private ModelMapper mapper;
 	private static Logger logger = LoggerFactory.getLogger(UsersEntity.class);
 	
@@ -43,6 +49,14 @@ public class UsersService {
 				usersDto = mapper.map(returnedUserEntity, UsersDto.class);
 			}	
 			return usersDto;
+		}
+		
+		//get user by email
+		public UsersDto findUserByEmail(String email) {
+			ContactAddressEntity userContactAddressEntity = this.contactAddressRepository.getByEmail(email);
+			UsersEntity usersEntityFound = this.usersRepository.getByContactAddress(userContactAddressEntity);
+			UsersDto userDtoToReturn = mapper.map(usersEntityFound, UsersDto.class);
+			return userDtoToReturn;
 		}
 
 }
