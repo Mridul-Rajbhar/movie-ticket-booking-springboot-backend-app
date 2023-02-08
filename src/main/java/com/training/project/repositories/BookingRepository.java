@@ -12,9 +12,8 @@ import com.training.project.repositories.entities.BookingEntity;
 import com.training.project.repositories.entities.MovieEntity;
 
 public interface BookingRepository extends CrudRepository<BookingEntity, Integer>{
-//	@Query("from BookingEntity e where e.language=?1 and e.movieFormat = ?2  and  e.bookingDate=?3 and e.bookingTime=?4 and e.movie=?5")
-//	public List<BookingEntity> getBookingsForShow(MovieLanguage movieLanguage, String movieFormat,
-//	LocalDate bookingDate, LocalTime bookingTime, MovieEntity movie);
-
+	@Query("from BookingEntity e where e.language=?1 and e.movieFormat = ?2  and  e.bookingDate=?3 and e.bookingTime=?4 and e.movie=?5")
+    public List<BookingEntity> getBookingsForShow(MovieLanguage movieLanguage, String movieFormat,
+LocalDate bookingDate, LocalTime bookingTime, MovieEntity movie);
 
 }

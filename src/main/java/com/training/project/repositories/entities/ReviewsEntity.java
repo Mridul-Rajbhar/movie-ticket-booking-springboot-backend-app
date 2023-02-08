@@ -30,7 +30,7 @@ public class ReviewsEntity {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="user_id", referencedColumnName = "id")
-	//@JsonBackReference(value="user-review")
+	@JsonBackReference(value="user-review")
 	private UsersEntity user;
 //	
 	@Column(name="stars")

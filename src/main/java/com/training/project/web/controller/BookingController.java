@@ -1,7 +1,10 @@
 package com.training.project.web.controller;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +16,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.training.project.dto.BookingDto;
+import com.training.project.dto.MovieLanguage;
+import com.training.project.dto.SeatsDto;
+import com.training.project.repositories.entities.BookingEntity;
+import com.training.project.repositories.entities.MovieEntity;
 import com.training.project.services.BookingService;
 
 @RestController
@@ -51,5 +59,15 @@ public class BookingController {
 		return new ResponseEntity<List<BookingDto>>(returnedListBookingDto, HttpStatus.OK);
 	}
 
-	
+	@CrossOrigin(origins="http://localhost:4200/")
+	@GetMapping(value="/booking/getSeats/{movieName}")
+	public ResponseEntity<List<SeatsDto>> getAllBookingsForShow(@PathVariable("movieName")String movieName,
+			@RequestParam String language, @RequestParam String movieFormat, 
+			@RequestParam String bookingDate, @RequestParam String bookingTime) {
+	MovieLanguage movieLanguage = MovieLanguage.valueOf(language);
+	System.out.println("function called");
+	List<SeatsDto> seatsToReturn =  this.bookingService.getSeatsForBooking(movieLanguage, movieFormat, LocalDate.parse(bookingDate),
+			LocalTime.parse(bookingTime), movieName);
+	return new ResponseEntity<List<SeatsDto>>(seatsToReturn, HttpStatus.OK);
+	}
 }

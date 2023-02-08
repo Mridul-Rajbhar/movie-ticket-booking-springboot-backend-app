@@ -85,10 +85,9 @@ public class MovieDto {
 	}
 	
 	// constructor
-	public MovieDto( Integer movieId,MovieGenre movieGenre, String movieName, LocalTime duration, String certificate,
+	public MovieDto(MovieGenre movieGenre, String movieName, LocalTime duration, String certificate,
 			LocalDate releaseDate, String description, String imageURL) {
 		super();
-		this.movieId = movieId;
 		this.movieGenre = movieGenre;
 		this.movieName = movieName;
 		this.duration = duration;

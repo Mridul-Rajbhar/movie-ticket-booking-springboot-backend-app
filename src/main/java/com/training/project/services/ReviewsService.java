@@ -143,7 +143,9 @@ public class ReviewsService {
 			System.out.println(movieToBook);
 			System.out.println(usersEntity);
 			ReviewsEntity reviewsEntity = this.reviewsRepository.findReviewByUserAndMovie(usersEntity, movieToBook);
-			ReviewsDto reviewsDto  = mapper.map(reviewsEntity, ReviewsDto.class);
+			ReviewsDto reviewsDto = null;
+			if(reviewsEntity != null) 
+				reviewsDto  = mapper.map(reviewsEntity, ReviewsDto.class);
 			return reviewsDto;
 			
 		}
