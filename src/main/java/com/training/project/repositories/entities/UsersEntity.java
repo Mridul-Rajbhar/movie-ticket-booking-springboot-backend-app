@@ -1,4 +1,4 @@
-package com.training.project.entities;
+package com.training.project.repositories.entities;
 
 import java.time.LocalDate;
 import java.util.List;

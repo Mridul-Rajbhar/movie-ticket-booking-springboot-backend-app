@@ -1,4 +1,4 @@
-package com.training.project.entities;
+package com.training.project.repositories.entities;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

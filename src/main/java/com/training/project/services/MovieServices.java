@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 
 import com.training.project.dto.MovieDTO;
 import com.training.project.dto.MovieGenre;
-import com.training.project.entities.MovieEntity;
-import com.training.project.repositories.entities.MovieRepository;
+import com.training.project.repositories.MovieRepository;
+import com.training.project.repositories.entities.MovieEntity;
 
 @Service
 public class MovieServices {
@@ -29,7 +29,7 @@ public class MovieServices {
 	public MovieDTO saveMovie(MovieDTO movie) {
 		ModelMapper mapper = new ModelMapper();
 		
-		//Converting MovieDTO Object into entity
+		//Converting MovieDTO Object into MovieEntity
 		MovieEntity movieEntity =  mapper.map(movie, MovieEntity.class);
 		
 		//Persist the converted data into database

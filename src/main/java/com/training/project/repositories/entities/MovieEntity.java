@@ -1,5 +1,5 @@
 
-package com.training.project.entities;
+package com.training.project.repositories.entities;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -127,7 +127,7 @@ public class MovieEntity {
 	
 	// constructor
 	public MovieEntity( MovieGenre movieGenre, String movieName, LocalTime duration, String certificate,
-			LocalDate releaseDate, String description, List<CastEntity> cast, String imageURL) {
+			LocalDate releaseDate, String description, String imageURL) {
 		super();
 		this.movieGenre = movieGenre;
 		this.movieName = movieName;
@@ -135,7 +135,6 @@ public class MovieEntity {
 		this.certificate = certificate;
 		this.releaseDate = releaseDate;
 		this.description = description;
-		this.cast = cast;
 		this.imageURL = imageURL;
 	}
 	public MovieEntity() {

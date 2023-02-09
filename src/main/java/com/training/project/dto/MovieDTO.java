@@ -86,7 +86,7 @@ public class MovieDTO {
 	
 	// constructor
 	public MovieDTO( MovieGenre movieGenre, String movieName, LocalTime duration, String certificate,
-			LocalDate releaseDate, String description, List<CastDTO> cast, String imageURL) {
+			LocalDate releaseDate, String description,String imageURL) {
 		super();
 		
 		this.movieGenre = movieGenre;
@@ -95,7 +95,6 @@ public class MovieDTO {
 		this.certificate = certificate;
 		this.releaseDate = releaseDate;
 		this.description = description;
-		this.cast = cast;
 		this.imageURL = imageURL;
 	}
 	public MovieDTO() {

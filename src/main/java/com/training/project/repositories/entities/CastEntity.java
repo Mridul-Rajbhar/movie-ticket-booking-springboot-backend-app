@@ -1,4 +1,4 @@
-package com.training.project.entities;
+package com.training.project.repositories.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -44,9 +44,8 @@ public class CastEntity {
 	}
 	//constructor
 	
-	public CastEntity(Integer castId, String castName, String profession) {
+	public CastEntity(String castName, String profession) {
 		super();
-		this.castId = castId;
 		this.castName = castName;
 		this.profession = profession;
 	}
