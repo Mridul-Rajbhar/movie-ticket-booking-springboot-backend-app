@@ -74,10 +74,10 @@ public void setSeatsType(SeatsType seatsType) {
 public void setBooking(BookingEntity booking) {
 	this.booking = booking;
 }
-public SeatsEntity(BookingEntity booking, char seatRow, int seatNumber, SeatsType seatsType) {
+public SeatsEntity(/*BookingEntity booking,*/ char seatRow, int seatNumber, SeatsType seatsType) {
 	super();
 	
-	this.booking = booking;
+	//this.booking = booking;
 	this.seatRow = seatRow;
 	this.seatNumber = seatNumber;
 	this.seatsType = seatsType;

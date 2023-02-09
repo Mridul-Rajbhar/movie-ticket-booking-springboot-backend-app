@@ -38,7 +38,7 @@ public class SeatsController {
 	@PostMapping(value = "/seats")
 	 public ResponseEntity<SeatsDto> createSeats(@RequestBody SeatsDto seats)
 	{
-	    SeatsDto returnedSeatsDto =this.seatsServices.saveSeats(seats);
+		 SeatsDto returnedSeatsDto =this.seatsServices.saveSeats(seats);
 	    return new ResponseEntity<SeatsDto>(returnedSeatsDto, HttpStatus.CREATED);
 	}
 	

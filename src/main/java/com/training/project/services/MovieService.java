@@ -33,7 +33,7 @@ public class MovieService {
 	
 	public MovieDto findMovieByName(String movieName) {
         ModelMapper mapper = new ModelMapper();
-        MovieDto movieDto = null;
+       MovieDto movieDto = null;
         Optional<MovieEntity> optional = this.movieRepository.findByMovieName(movieName);
         if(optional.isPresent()) {
             MovieEntity movieEntity =  optional.get();

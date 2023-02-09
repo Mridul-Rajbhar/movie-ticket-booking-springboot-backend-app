@@ -69,10 +69,8 @@ public class BookingDto {
 	public void setSeats(List<SeatsDto> seats) {
 		this.seats = seats;
 	}
-	public BookingDto(MovieDto movie, MovieLanguage language, String movieFormat,
-			LocalDate bookingDate, LocalTime bookingTime) {
-		super();
-		
+	public BookingDto() {}
+	public BookingDto(MovieDto movie, MovieLanguage language, String movieFormat,LocalDate bookingDate, LocalTime bookingTime) {
 		this.movie = movie;
 		this.language = language;
 		this.movieFormat = movieFormat;

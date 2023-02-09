@@ -124,9 +124,7 @@ public class MovieEntity {
 		this.cast = cast;
 	}
 	// constructor
-	
 	public MovieEntity() {}
-	
 	public MovieEntity(MovieGenre movieGenre, String movieName, LocalTime duration, String certificate,
 			LocalDate releaseDate, String description, String imageURL) {
 		

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.training.project.dto.BookingDto;
 import com.training.project.dto.MovieDto;
 import com.training.project.dto.SeatsDto;
+import com.training.project.repositories.BookingRepository;
 import com.training.project.repositories.SeatsRepository;
 import com.training.project.repositories.entities.BookingEntity;
 import com.training.project.repositories.entities.MovieEntity;
@@ -23,6 +24,7 @@ public class SeatService {
 	@Autowired
 	public SeatService(SeatsRepository seatsRepository) {
 		this.seatsRepository=seatsRepository;
+		
 	}
 	
 	public SeatsDto saveSeats(SeatsDto seats) {

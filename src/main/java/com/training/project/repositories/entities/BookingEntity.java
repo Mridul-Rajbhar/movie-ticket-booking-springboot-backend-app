@@ -26,8 +26,6 @@ import com.training.project.dto.MovieLanguage;
 
 @Entity
 @Table(name="booking")
-
-
 public class BookingEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,7 +54,6 @@ public class BookingEntity {
 	private List<SeatsEntity> seats;
 
 	//setters and getters
-	
 	
 	public Integer getBookingId() {
 		return bookingId;
@@ -105,19 +102,13 @@ public class BookingEntity {
 		this.seats = seats;
 	}
 	public BookingEntity() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
-	public BookingEntity(MovieEntity movie, MovieLanguage language, String movieFormat,
-			LocalDate bookingDate, LocalTime bookingTime, List<SeatsEntity> seats) {
-		super();
-		
-		this.movie = movie;
+	public BookingEntity(MovieLanguage language, String movieFormat,LocalDate bookingDate, LocalTime bookingTime) {
 		this.language = language;
 		this.movieFormat = movieFormat;
 		this.bookingDate = bookingDate;
 		this.bookingTime = bookingTime;
-		this.seats = seats;
+		
 	}
 	
 	
